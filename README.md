@@ -7,6 +7,12 @@ JooYoung Seo | AccessComputing Partner Meeting | October 23, 2026
 
 This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProSem repository](https://github.com/xability/prosem26-maidr) is unchanged. Core slides, visual styling, Python/R examples, audio and images are reused. The cover and speaker notes are adapted for AccessComputing; the AI example uses Claude.ai and AccessComputing partner categories instead of iSchool enrollment.
 
+## Published presentation
+
+- Short link: https://tinyurl.com/accesscom-maidr
+- GitHub Pages: https://xabilitylab.ischool.illinois.edu/accesscomputing26-maidr/
+- Repository: https://github.com/xability/accesscomputing26-maidr
+
 ## Present
 
 Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
