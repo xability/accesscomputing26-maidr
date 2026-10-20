@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-10-20T16:07:58.363Z",
+  "platform": "ChatGPT Work, Personal Pro account",
+  "model": "GPT-6.1 Sol Light",
+  "originalConversation": "https://chatgpt.com/c/6ad7903b-e578-83e9-a7b8-dbc7ec1717e6",
+  "publicConversation": "https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3",
+  "prompt": "Chart the number of AccessComputing partners in each partner category from https://accesscomputing.uw.edu/partners.",
+  "source": "https://accesscomputing.uw.edu/partners",
+  "sourceFetchedBy": "ChatGPT",
+  "counts": {
+    "Institutional": 77,
+    "Organizational": 29,
+    "Industry": 17
+  },
+  "categoryMemberships": 123,
+  "uniquePartners": 122,
+  "notes": "Teach Access is listed in Organizational and Industry categories. Personal email and authentication material are not included.",
+  "keyboardVerifiedOriginalPreview": [
+    77,
+    29,
+    17
+  ],
+  "brailleVerifiedOriginalPreview": true,
+  "publicPreview": "File preview did not open on shared read-only page during initial verification; direct exported HTML is provided as fallback",
+  "unverified": [
+    "physical braille display",
+    "screen-reader audio",
+    "data-dependent sonification"
+  ],
+  "keyboardVerifiedEmbeddedSlide": [
+    77,
+    29,
+    17
+  ],
+  "validator": "Current official maidr-skill package: 0 errors, 0 warnings; bundled maidr.js 4.16.0 verified",
+  "sourceFragmentPreserved": true,
+  "slideAnchor": "ai-chatgpt-public-demo"
+}

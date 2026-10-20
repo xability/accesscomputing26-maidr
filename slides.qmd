@@ -750,7 +750,7 @@ So we wrote a skill. A skill is a set of instructions an AI assistant loads when
 - **Any coding agent:** `npx skills add xability/maidr-skill`
 
 ::: {.notes}
-You install it once. For the web apps, download our ready-made ZIP and upload it as a skill, not as a chat attachment. In ChatGPT, this requires an eligible workspace with Skills enabled; our Illinois workspace has it. In Claude, enable code execution and turn the skill on. No one needs to clone the repository or build a ZIP. The public plugin directory submissions are not the same thing: Claude is still in review, and current OpenAI approval has not been confirmed. Claude Code can use the third-party marketplace commands on the slide. All of this is documented with official sources in the README of xability slash maidr-skill.
+You install it once. For the web apps, download our ready-made ZIP and upload it as a skill, not as a chat attachment. In ChatGPT, this requires a plan or workspace with Skills enabled; both the Illinois workspace and the personal Pro account used in this rehearsal have it. In Claude, enable code execution and turn the skill on. No one needs to clone the repository or build a ZIP. The public plugin directory submissions are not the same thing: Claude is still in review, and current OpenAI approval has not been confirmed. Claude Code can use the third-party marketplace commands on the slide. All of this is documented with official sources in the README of xability slash maidr-skill.
 :::
 
 ---
@@ -763,7 +763,7 @@ from https://accesscomputing.uw.edu/partners.
 ```
 
 ::: {.notes}
-Here is an example from this community, rather than from our own university: the partner network that brings institutions, organizations, and industry together. This is the original prompt used in Claude.ai. It asks for a chart and identifies the public source; it does not provide any numbers.
+Here is an example from this community, rather than from our own university: the partner network that brings institutions, organizations, and industry together. This is the same original prompt used in Claude.ai and the personal ChatGPT demo. It asks for a chart and identifies the public source; it does not provide any numbers.
 
 In this rehearsal, Claude.ai's workspace had web search disabled, and its code sandbox could not fetch the source domain. I therefore supplied counts checked against the official roster: 77 Institutional Partners, 29 Organizational Partners, and 17 Industry Partners, captured October 20, 2026. These are partner-category memberships, not student counts or program impact measures.
 
@@ -792,6 +792,30 @@ This is the chart exported by Claude.ai, not a replacement drawn outside the con
 The bars represent listed entries in the three official partner categories: Institutional 77, Organizational 29, Industry 17. They sum to 123 category memberships. Teach Access is listed in both Organizational and Industry Partners, so that is 122 unique partners, not 123. The chart preserves that overlap note and credits the official roster. This is a snapshot, not a historical trend or a claim about student outcomes.
 
 Tab into the chart and use the arrow keys to explore. T toggles text, B braille, and S sound. Physical braille hardware and screen-reader audio were not tested in this browser rehearsal. Use the exported HTML in this slide if the live conversation is unavailable. The MAIDR runtime still loads from a CDN, so an internet connection is required.
+:::
+
+---
+
+## AI: ChatGPT Public Demo
+
+```{python}
+#| echo: false
+#| eval: true
+
+show_saved_chart(
+    "charts/ai-accesscomputing-partners-chatgpt.html",
+    "AccessComputing partners by category, generated in ChatGPT",
+)
+```
+
+ChatGPT · [Shared conversation](https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3){target="_blank" rel="noopener noreferrer"} · [Open interactive chart](charts/ai-accesscomputing-partners-chatgpt.html){target="_blank" rel="noopener noreferrer"}
+
+::: {.notes}
+This is a second run of the same one-line prompt, in a personal ChatGPT Pro account with the MAIDR skill installed. ChatGPT fetched the official partner roster itself, counted partner entries rather than named contacts, identified the Teach Access overlap, and generated a real py-maidr chart. It did not need the counts supplied in a follow-up as the Claude.ai rehearsal did. The counts are Institutional 77, Organizational 29, and Industry 17.
+
+This slide preserves ChatGPT's generated SVG, MAIDR data binding, and bundled runtime, with only an outer HTML wrapper and source/overlap notes added for presentation. In the original ChatGPT HTML preview, Tab entered the MAIDR application, right arrows announced 77, 29 and 17, and B displayed the braille shape. Physical braille hardware, screen-reader audio, and data-dependent sonification remain untested.
+
+The shared conversation is public. During rehearsal its read-only view showed the conversation and file card, but the attached HTML preview did not open there. ChatGPT also printed its visualize call as text rather than rendering it in the message body. Do not claim the shared chat contains a verified inline interactive chart. Use the direct interactive chart link or this embedded copy for reliable live interaction. The exported bundle works without downloading maidr.js; its UI begins in English and its AI chat is unavailable.
 :::
 
 ---

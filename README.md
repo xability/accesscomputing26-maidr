@@ -48,3 +48,15 @@ The exported HTML is kept as Claude.ai generated it; the slide embeds that page 
 ## Verification
 
 Quarto 1.11.5 rendered slides.html successfully. The saved Claude.ai chart passed the MAIDR static checker with 0 errors and 0 warnings. In the rendered deck, keyboard navigation announced category values 77, 29, and 17. Braille mode was checked in the standalone exported chart. Physical screen-reader audio, tactile hardware and data-dependent sonification were not tested.
+
+## ChatGPT public demo
+
+- Public conversation: https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3
+- Original conversation (presenter login): https://chatgpt.com/c/6ad7903b-e578-83e9-a7b8-dbc7ec1717e6
+- Public interactive HTML: https://xabilitylab.ischool.illinois.edu/accesscomputing26-maidr/charts/ai-accesscomputing-partners-chatgpt.html
+
+This was generated in a personal ChatGPT Pro account with GPT-6.1 Sol Light and the official MAIDR skill installed. The same one-line prompt led ChatGPT to fetch the official roster and produce counts 77, 29, 17, with the Teach Access overlap identified. The original HTML preview passed Tab/arrow-key navigation and braille-mode checks.
+
+ChatGPT printed a literal visualize command in its message body. Its public shared view shows the conversation and file card, but the HTML preview did not open there during rehearsal. The slide therefore provides the public conversation link plus the direct interactive HTML fallback. It does not claim a verified interactive chart inside the shared chat.
+
+The exact exported fragment is preserved at demo/chatgpt-output-fragment.html. The chart page adds only a document wrapper and source/overlap notes, not a redraw. Its bundled maidr.js 4.16.0 passed the validator in the same current skill package installed in ChatGPT (0 errors, 0 warnings). The bundle starts in English, uses session-local settings, and has no AI-chat network access. See demo/chatgpt-provenance.json.
