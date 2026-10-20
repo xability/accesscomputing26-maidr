@@ -1,0 +1,30 @@
+{
+  "source": "https://accesscomputing.uw.edu/partners",
+  "captured": "2026-10-20",
+  "conversation": "https://claude.ai/chat/fbab7127-b46d-4112-8978-bf115b7f7f4d",
+  "model": "Sonnet 4.6 Low",
+  "sourceCountsSuppliedBy": "Aside after inspecting the official roster; independently checked",
+  "categories": [
+    {
+      "category": "Institutional Partners",
+      "listedEntries": 77
+    },
+    {
+      "category": "Organizational Partners",
+      "listedEntries": 29
+    },
+    {
+      "category": "Industry Partners",
+      "listedEntries": 17
+    }
+  ],
+  "categoryMemberships": 123,
+  "uniquePartners": 122,
+  "overlap": "Teach Access: Organizational and Industry",
+  "limitations": [
+    "Claude.ai web search disabled in this workspace",
+    "Source domain unavailable to Claude code sandbox",
+    "First response produced unbound Chart.js; a subsequent prompt explicitly requested the installed maidr skill and Python binding",
+    "First response produced unbound Chart.js; a follow-up explicitly requested the installed maidr skill and Python binding"
+  ]
+}

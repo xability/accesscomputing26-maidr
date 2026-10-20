@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-20T14:56:28.740Z",
+  "sourceProsemUnchanged": true,
+  "quarto": "1.11.5",
+  "render": "success",
+  "staticCheck": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "keyboardValuesConfirmedInDeck": [
+    77,
+    29,
+    17
+  ],
+  "brailleMode": "confirmed in standalone exported chart",
+  "unverified": [
+    "physical screen reader output",
+    "tactile hardware",
+    "data-dependent sonification"
+  ],
+  "internetRequired": true
+}

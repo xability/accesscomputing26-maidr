@@ -1,0 +1,13 @@
+Chart the number of AccessComputing partners in each partner category from https://accesscomputing.uw.edu/partners.
+
+Follow-up after observed network restriction:
+Use this source-verified snapshot of the official AccessComputing partners page, captured October 20, 2026:
+
+Partner category,Listed entries
+Institutional Partners,77
+Organizational Partners,29
+Industry Partners,17
+
+These are counts of listed entries in each section, not people. Teach Access appears in both Organizational and Industry Partners, so there are 123 category memberships and 122 unique partners. Please chart the three category counts and clearly note the cross-category overlap. This is for an AccessComputing partner meeting demonstration. Also provide downloadable HTML and CSV so I can include the exact chart in my slides. Cite https://accesscomputing.uw.edu/partners as the data source, and make clear that I supplied the source-verified counts because this workspace cannot fetch that page.
+
+Second follow-up: Explicitly requested the installed maidr skill, Python import/install, Matplotlib, and maidr.save_html with use_cdn=True; asked to preserve source and overlap notes and provide downloadable full HTML and CSV.
