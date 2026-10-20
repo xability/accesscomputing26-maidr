@@ -3,7 +3,7 @@
   "platform": "ChatGPT Work, Personal Pro account",
   "model": "GPT-6.1 Sol Light",
   "originalConversation": "https://chatgpt.com/c/6ad7903b-e578-83e9-a7b8-dbc7ec1717e6",
-  "publicConversation": "https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3",
+  "publicConversation": "https://chatgpt.com/share/6ad7e7d2-aa08-83e9-90ae-7031a1231ceb",
   "prompt": "Chart the number of AccessComputing partners in each partner category from https://accesscomputing.uw.edu/partners.",
   "source": "https://accesscomputing.uw.edu/partners",
   "sourceFetchedBy": "ChatGPT",
@@ -21,7 +21,7 @@
     17
   ],
   "brailleVerifiedOriginalPreview": true,
-  "publicPreview": "File preview did not open on shared read-only page during initial verification; direct exported HTML is provided as fallback",
+  "publicPreview": "Corrected native inline chart verified in the new signed-in read-only shared view, including Tab, all three arrow-key announcements, and exact original/highlight geometry; attachment preview is not relied on. A separate anonymous browser could read the chat history but inline code execution was disabled; use the direct HTML for no-login interaction.",
   "unverified": [
     "physical braille display",
     "screen-reader audio",
@@ -34,5 +34,38 @@
   ],
   "validator": "Current official maidr-skill package: 0 errors, 0 warnings; bundled maidr.js 4.16.0 verified",
   "sourceFragmentPreserved": true,
-  "slideAnchor": "ai-chatgpt-public-demo"
+  "slideAnchor": "ai-chatgpt-public-demo",
+  "previousPublicConversation": "https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3",
+  "initialPublicPreview": "File preview did not open on shared read-only page during initial verification; direct exported HTML is provided as fallback",
+  "inlineDeliveryFollowUpRequired": true,
+  "keyboardVerifiedOriginalInline": [
+    77,
+    29,
+    17
+  ],
+  "keyboardVerifiedPublicInline": [
+    77,
+    29,
+    17
+  ],
+  "brailleVerifiedOriginalInline": true,
+  "nativeInlineWidthsVerified": [
+    360,
+    390,
+    778
+  ],
+  "responsiveScope": "Actual native iframe container widths; not full-app mobile viewport emulation.",
+  "upstreamFix": "https://github.com/xability/maidr-skill/pull/41",
+  "upstreamStatus": "PR submitted, not merged",
+  "inlineVerificationFile": "demo/chatgpt-inline-verification.json",
+  "publicAnonymousInline": {
+    "pageAccessible": true,
+    "httpStatus": 200,
+    "initialCookies": 0,
+    "waitSeconds": 60,
+    "chartIframePresent": false,
+    "message": "Code execution is disabled for this workspace",
+    "keyboardTestable": false,
+    "fallback": "Public interactive HTML and embedded presentation chart"
+  }
 }

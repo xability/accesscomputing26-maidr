@@ -5,7 +5,7 @@
 JooYoung Seo | AccessComputing Partner Meeting | October 23, 2026
 11:00 a.m. Pacific / 1:00 p.m. Central
 
-This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProSem repository](https://github.com/xability/prosem26-maidr) is unchanged. Core slides, visual styling, Python/R examples, audio and images are reused. The cover and speaker notes are adapted for AccessComputing; the AI example uses Claude.ai and AccessComputing partner categories instead of iSchool enrollment.
+This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProSem repository](https://github.com/xability/prosem26-maidr) is unchanged. Core slides, visual styling, Python/R examples, audio and images are reused. The cover and speaker notes are adapted for AccessComputing; the AI examples use Claude.ai, ChatGPT, and AccessComputing partner categories instead of iSchool enrollment.
 
 ## Published presentation
 
@@ -51,12 +51,14 @@ Quarto 1.11.5 rendered slides.html successfully. The saved Claude.ai chart passe
 
 ## ChatGPT public demo
 
-- Public conversation: https://chatgpt.com/share/6ad7910f-3b5c-83ea-866f-477446569bc3
+- Public conversation: https://chatgpt.com/share/6ad7e7d2-aa08-83e9-90ae-7031a1231ceb
 - Original conversation (presenter login): https://chatgpt.com/c/6ad7903b-e578-83e9-a7b8-dbc7ec1717e6
 - Public interactive HTML: https://xabilitylab.ischool.illinois.edu/accesscomputing26-maidr/charts/ai-accesscomputing-partners-chatgpt.html
 
 This was generated in a personal ChatGPT Pro account with GPT-6.1 Sol Light and the official MAIDR skill installed. The same one-line prompt led ChatGPT to fetch the official roster and produce counts 77, 29, 17, with the Teach Access overlap identified. The original HTML preview passed Tab/arrow-key navigation and braille-mode checks.
 
-ChatGPT printed a literal visualize command in its message body. Its public shared view shows the conversation and file card, but the HTML preview did not open there during rehearsal. The slide therefore provides the public conversation link plus the direct interactive HTML fallback. It does not claim a verified interactive chart inside the shared chat.
+The initial response printed a bare visualize command as text. A delivery-only follow-up corrected the native content-reference delimiters and rendered the same generated chart in the conversation, without redrawing it. The new public link includes the correction history. In the actual inline frame and the signed-in read-only shared view, Tab reached role="application", arrow keys announced 77, 29 and 17, and every highlight matched its corresponding original SVG path and rendered bounds. All three points also passed at native frame widths 360, 390 and 778 CSS px with no horizontal overflow, and braille mode displayed its text shape. This tests the actual iframe, not the full ChatGPT mobile layout. A separate fresh anonymous browser opened the shared history with HTTP 200 and no login, but after 60 seconds the corrected response said "Code execution is disabled for this workspace" and no chart iframe existed. Therefore anonymous inline execution is unavailable in this check, not verified. Use the direct interactive HTML and embedded slide for reliable no-login public access.
+
+The upstream converter, guidance and regression tests were corrected in [maidr-skill PR #41](https://github.com/xability/maidr-skill/pull/41). The PR is submitted, not yet merged. The full test suite ran 137 tests with 132 passing; the five failures also reproduce on untouched baseline bc21685. See demo/chatgpt-inline-verification.json for scoped browser evidence. Physical braille hardware, screen-reader audio, and data-dependent sonification in the actual ChatGPT frame remain untested.
 
 The exact exported fragment is preserved at demo/chatgpt-output-fragment.html. The chart page adds only a document wrapper and source/overlap notes, not a redraw. Its bundled maidr.js 4.16.0 passed the validator in the same current skill package installed in ChatGPT (0 errors, 0 warnings). The bundle starts in English, uses session-local settings, and has no AI-chat network access. See demo/chatgpt-provenance.json.

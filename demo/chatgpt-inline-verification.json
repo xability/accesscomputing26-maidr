@@ -1,0 +1,216 @@
+{
+  "verifiedAt": "2026-10-20T22:15:21.698Z",
+  "surface": "Actual native inline visualization in the signed-in ChatGPT Work conversation, not the file preview",
+  "deliveryCorrection": "A follow-up republished the existing /workspace/accesscomputing-partners.html using native U+E200, visualize, U+E202, JSON path, U+E201. The initial bare invocation remains in the history.",
+  "sameGeneratedChartPreserved": true,
+  "tabReachedRoleApplication": true,
+  "desktop": [
+    {
+      "frameWidth": 778,
+      "svgWidth": 614.3958740234375,
+      "point": "Institutional",
+      "value": 77,
+      "announcement": "Partner category is Institutional, Number of partners is 77",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 778,
+      "svgWidth": 614.3958740234375,
+      "point": "Organizational",
+      "value": 29,
+      "announcement": "Partner category is Organizational, Number of partners is 29",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 778,
+      "svgWidth": 614.3958740234375,
+      "point": "Industry",
+      "value": 17,
+      "announcement": "Partner category is Industry, Number of partners is 17",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    }
+  ],
+  "narrow360": [
+    {
+      "frameWidth": 360,
+      "svgWidth": 342,
+      "point": "Industry",
+      "value": 17,
+      "announcement": "Partner category is Industry, Number of partners is 17",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 360,
+      "svgWidth": 342,
+      "point": "Organizational",
+      "value": 29,
+      "announcement": "Partner category is Organizational, Number of partners is 29",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 360,
+      "svgWidth": 342,
+      "point": "Institutional",
+      "value": 77,
+      "announcement": "Partner category is Institutional, Number of partners is 77",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    }
+  ],
+  "narrow390": [
+    {
+      "frameWidth": 390,
+      "svgWidth": 372,
+      "point": "Institutional",
+      "value": 77,
+      "announcement": "Partner category is Institutional, Number of partners is 77",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 390,
+      "svgWidth": 372,
+      "point": "Organizational",
+      "value": 29,
+      "announcement": "Partner category is Organizational, Number of partners is 29",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    },
+    {
+      "frameWidth": 390,
+      "svgWidth": 372,
+      "point": "Industry",
+      "value": 17,
+      "announcement": "Partner category is Industry, Number of partners is 17",
+      "roleApplication": true,
+      "announcementMatches": true,
+      "pathMatches": true,
+      "boundsMatch": true,
+      "noHorizontalOverflow": true,
+      "originalsUnchanged": true
+    }
+  ],
+  "restored": {
+    "frameWidth": 778,
+    "svgWidth": 614.3958740234375,
+    "point": "Industry",
+    "value": 17,
+    "announcement": "Partner category is Industry, Number of partners is 17",
+    "roleApplication": true,
+    "announcementMatches": true,
+    "pathMatches": true,
+    "boundsMatch": true,
+    "noHorizontalOverflow": true,
+    "originalsUnchanged": true
+  },
+  "responsiveMethod": "Temporary width and max-width on the actual native iframe container, then restored. The complete ChatGPT mobile viewport was not emulated.",
+  "braille": {
+    "verified": true,
+    "value": "⠉⣀⣀\n"
+  },
+  "unverified": [
+    "physical braille hardware",
+    "screen-reader audio",
+    "data-dependent sonification in the actual ChatGPT frame"
+  ],
+  "syntheticCspBrowserRegression": "3 Chromium tests passed: matching all 6 original marks after viewport resize, data-dependent oscillator pitches, accessible missing-DecompressionStream failure.",
+  "publicShare": {
+    "url": "https://chatgpt.com/share/6ad7e7d2-aa08-83e9-90ae-7031a1231ceb",
+    "verifiedAt": "2026-10-20T22:22:32.370Z",
+    "mode": "Read-only shared view, signed in",
+    "runtimeReady": true,
+    "tabReachedRoleApplication": true,
+    "points": [
+      {
+        "frameWidth": 778,
+        "svgWidth": 614.3958740234375,
+        "point": "Institutional",
+        "value": 77,
+        "announcement": "Partner category is Institutional, Number of partners is 77",
+        "roleApplication": true,
+        "announcementMatches": true,
+        "pathMatches": true,
+        "boundsMatch": true,
+        "noHorizontalOverflow": true,
+        "originalsUnchanged": true
+      },
+      {
+        "frameWidth": 778,
+        "svgWidth": 614.3958740234375,
+        "point": "Organizational",
+        "value": 29,
+        "announcement": "Partner category is Organizational, Number of partners is 29",
+        "roleApplication": true,
+        "announcementMatches": true,
+        "pathMatches": true,
+        "boundsMatch": true,
+        "noHorizontalOverflow": true,
+        "originalsUnchanged": true
+      },
+      {
+        "frameWidth": 778,
+        "svgWidth": 614.3958740234375,
+        "point": "Industry",
+        "value": 17,
+        "announcement": "Partner category is Industry, Number of partners is 17",
+        "roleApplication": true,
+        "announcementMatches": true,
+        "pathMatches": true,
+        "boundsMatch": true,
+        "noHorizontalOverflow": true,
+        "originalsUnchanged": true
+      }
+    ],
+    "anonymousAccess": "Chat history accessible without login (HTTP 200); inline execution disabled, no chart iframe after 60 seconds.",
+    "anonymousCheck": {
+      "freshNonpersistentChromium": true,
+      "initialCookies": 0,
+      "waitSeconds": 60,
+      "httpStatus": 200,
+      "loginRequiredForHistory": false,
+      "iframePresent": false,
+      "runtimeReady": false,
+      "message": "Code execution is disabled for this workspace",
+      "cloudflareOrServerBlock": false,
+      "pageErrors": [],
+      "keyboardTestable": false
+    }
+  }
+}
