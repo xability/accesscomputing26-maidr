@@ -17,7 +17,7 @@ This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProS
 
 Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
 
-The thumbnail-grid overview is disabled for this deck (`overview: false`), so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen.
+The bundled `overview-blocker` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen.
 
 Serve this folder locally if desired:
 
@@ -30,6 +30,20 @@ The deck retains the full ProSem material. For a 15-minute talk, prioritize the 
 ## Render
 
 The source is `slides.qmd`; the checked-in `slides.html` and `slides_files/` are the published presentation. The original pinned `requirements.txt` is retained. Use a compatible Python environment with py-maidr 1.27.0 and matplotlib 3.10.6, set `QUARTO_PYTHON` to that environment, and run `quarto render slides.qmd`. On Windows, `render.ps1` also finds a project-local `.venv` or the original sibling ProSem environment.
+
+## Reusable Overview Blocker filter
+
+Copy `_extensions/overview-blocker/` into another Quarto project, or install the packaged ZIP with `quarto add ./overview-blocker.zip`. Enable it in a document or `_quarto.yml`:
+
+```yaml
+format: revealjs
+filters:
+  - overview-blocker
+```
+
+The Lua-only filter applies to Reveal.js output, overrides an explicit `overview: true`, and leaves other formats and keyboard bindings unchanged. It injects no JavaScript and installs no global Esc handler. See `_extensions/overview-blocker/README.md` for details.
+
+Run the rendering regression tests with PowerShell: `./tests/test-overview-blocker.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Tested with Quarto 1.11.5.
 
 ## Claude.ai example
 

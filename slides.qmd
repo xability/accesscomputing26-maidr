@@ -15,9 +15,6 @@ format:
     # (quarto-dev/quarto-cli#15019). The URL still follows the slides, but the
     # browser's Back button no longer steps through them.
     history: false
-    # Keep Esc from opening the thumbnail grid during screen-reader navigation.
-    # Disable only Reveal's overview; Esc can still dismiss menus and overlays.
-    overview: false
     width: 1600
     height: 900
     margin: 0.02
@@ -31,6 +28,9 @@ format:
     center-title-slide: true
     code-line-numbers: false
     code-copy: true
+# Reusable Lua filter: disable Overview without intercepting Esc.
+filters:
+  - overview-blocker
 execute:
   echo: false
   cache: false
