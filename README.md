@@ -17,6 +17,8 @@ This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProS
 
 Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
 
+The thumbnail-grid overview is disabled for this deck (`overview: false`), so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen.
+
 Serve this folder locally if desired:
 
     python -m http.server 8766 --bind 127.0.0.1
