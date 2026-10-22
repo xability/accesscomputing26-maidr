@@ -1,0 +1,18 @@
+<script id="jy-a11y">
+(function () {
+  "use strict";
+  const reveal = window.Reveal;
+  if (!reveal) return;
+  function applyAccessibility() {
+    const config = reveal.getConfig();
+    // Never re-enable keyboard navigation an author explicitly disabled.
+    if (config.keyboard === false) return;
+    const keyboard = config.keyboard && typeof config.keyboard === "object"
+      ? { ...config.keyboard } : {};
+    keyboard[72] = null;
+    reveal.configure({ keyboard });
+  }
+  if (reveal.isReady()) applyAccessibility();
+  else reveal.on("ready", applyAccessibility);
+})();
+</script>

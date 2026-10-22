@@ -1,12 +1,12 @@
 param(
-  [string]$ExtensionRoot = (Join-Path $PSScriptRoot '..\_extensions\overview-blocker'),
+  [string]$ExtensionRoot = (Join-Path $PSScriptRoot '..\_extensions\jy-a11y'),
   # Keep project fixtures on a normal path; Quarto may skip hidden ancestors.
   [string]$WorkRoot = $PSScriptRoot,
   [string]$ReportPath
 )
 $ErrorActionPreference = 'Stop'
 $ExtensionRoot = (Resolve-Path $ExtensionRoot).Path
-$run = Join-Path $WorkRoot ('overview-blocker-' + [guid]::NewGuid().ToString('N'))
+$run = Join-Path $WorkRoot ('jy-a11y-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $run -Force | Out-Null
 $results = [Collections.Generic.List[object]]::new()
 function Write-Text($Path, $Text) {
@@ -15,7 +15,7 @@ function Write-Text($Path, $Text) {
 function Render-Case($Name, [string[]]$Yaml, $To = 'revealjs', $Checks = @{}) {
   $dir = Join-Path $run $Name
   New-Item -ItemType Directory -Path (Join-Path $dir '_extensions') -Force | Out-Null
-  Copy-Item $ExtensionRoot (Join-Path $dir '_extensions\overview-blocker') -Recurse
+  Copy-Item $ExtensionRoot (Join-Path $dir '_extensions\jy-a11y') -Recurse
   Write-Text (Join-Path $dir 'assert-unchanged.lua') "function Meta(meta) if meta.overview ~= true then error('Non-Reveal metadata changed') end return meta end"
   $lines = @('---') + $Yaml + @('---', '', '## First', '', 'First slide.', '', '## Second', '', 'Second slide.')
   $source = Join-Path $dir 'example.qmd'
@@ -28,6 +28,8 @@ function Render-Case($Name, [string[]]$Yaml, $To = 'revealjs', $Checks = @{}) {
   if (-not (Test-Path $output)) { throw "$Name output missing" }
   if ($To -ne 'docx') {
     $html = Get-Content $output -Raw
+    if ($Name -eq 'unrelated-options-preserved' -and $html.Contains('data-at-shortcutkeys')) { throw 'Reserved keys added with keyboard:false' }
+    if ($To -eq 'html' -and ($html.Contains('<script id="jy-a11y"') -or $html.Contains('data-at-shortcutkeys'))) { throw 'Filter leaked into ordinary HTML' }
     foreach ($entry in $Checks.GetEnumerator()) {
       if ($html -notmatch $entry.Value) { throw "$Name assertion failed: $($entry.Key)" }
     }
@@ -36,19 +38,19 @@ function Render-Case($Name, [string[]]$Yaml, $To = 'revealjs', $Checks = @{}) {
   Write-Output "PASS $Name"
 }
 try {
-  $blocked = @{overview='(?m)^\s*overview:\s*false\s*,'}
+  $blocked = @{overview='(?m)^\s*overview:\s*false\s*,'; runtime='<script id="jy-a11y"'; reserved='data-at-shortcutkeys'}
   Render-Case 'baseline-unfiltered' @('format:', '  revealjs:', '    overview: true') 'revealjs' @{overview='(?m)^\s*overview:\s*true\s*,'}
-  Render-Case 'default-blocked' @('format: revealjs', 'filters: [overview-blocker]') 'revealjs' $blocked
-  Render-Case 'explicit-true-overridden' @('format:', '  revealjs:', '    overview: true', 'filters: [overview-blocker]') 'revealjs' $blocked
-  Render-Case 'explicit-false-preserved' @('format:', '  revealjs:', '    overview: false', 'filters: [overview-blocker]') 'revealjs' $blocked
-  Render-Case 'unrelated-options-preserved' @('format:', '  revealjs:', '    overview: true', '    keyboard: false', '    width: 1234', '    height: 777', 'filters: [overview-blocker]') 'revealjs' @{overview='(?m)^\s*overview:\s*false\s*,';keyboard='(?m)^\s*keyboard:\s*false\s*,';width='(?m)^\s*width:\s*1234\s*,';height='(?m)^\s*height:\s*777\s*,'}
-  Render-Case 'self-contained' @('format:', '  revealjs:', '    embed-resources: true', 'filters: [overview-blocker]') 'revealjs' $blocked
-  Render-Case 'ordinary-html-unchanged' @('format: html', 'overview: true', 'filters: [overview-blocker, assert-unchanged.lua]') 'html'
-  Render-Case 'docx-unchanged' @('format: docx', 'overview: true', 'filters: [overview-blocker, assert-unchanged.lua]') 'docx'
+  Render-Case 'default-blocked' @('format: revealjs', 'filters: [jy-a11y]') 'revealjs' $blocked
+  Render-Case 'explicit-true-overridden' @('format:', '  revealjs:', '    overview: true', 'filters: [jy-a11y]') 'revealjs' $blocked
+  Render-Case 'explicit-false-preserved' @('format:', '  revealjs:', '    overview: false', 'filters: [jy-a11y]') 'revealjs' $blocked
+  Render-Case 'unrelated-options-preserved' @('format:', '  revealjs:', '    overview: true', '    keyboard: false', '    width: 1234', '    height: 777', 'filters: [jy-a11y]') 'revealjs' @{overview='(?m)^\s*overview:\s*false\s*,';keyboard='(?m)^\s*keyboard:\s*false\s*,';width='(?m)^\s*width:\s*1234\s*,';height='(?m)^\s*height:\s*777\s*,'}
+  Render-Case 'self-contained' @('format:', '  revealjs:', '    embed-resources: true', 'filters: [jy-a11y]') 'revealjs' $blocked
+  Render-Case 'ordinary-html-unchanged' @('format: html', 'overview: true', 'filters: [jy-a11y, assert-unchanged.lua]') 'html'
+  Render-Case 'docx-unchanged' @('format: docx', 'overview: true', 'filters: [jy-a11y, assert-unchanged.lua]') 'docx'
   $project = Join-Path $run 'project-inherited'
   New-Item -ItemType Directory -Path (Join-Path $project '_extensions') -Force | Out-Null
-  Copy-Item $ExtensionRoot (Join-Path $project '_extensions\overview-blocker') -Recurse
-  Write-Text (Join-Path $project '_quarto.yml') (@('project:', '  type: default', 'format: revealjs', 'filters: [overview-blocker]') -join [Environment]::NewLine)
+  Copy-Item $ExtensionRoot (Join-Path $project '_extensions\jy-a11y') -Recurse
+  Write-Text (Join-Path $project '_quarto.yml') (@('project:', '  type: default', 'format: revealjs', 'filters: [jy-a11y]') -join [Environment]::NewLine)
   Write-Text (Join-Path $project 'example.qmd') (@('---', 'format:', '  revealjs:', '    overview: true', '---', '', '## First', '', 'First slide.') -join [Environment]::NewLine)
   Push-Location $project
   try {

@@ -17,7 +17,7 @@ This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProS
 
 Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
 
-The bundled `overview-blocker` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen.
+The bundled `jy-a11y` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen. H no longer navigates backwards. The filter also declares J/K/N/P through data-at-shortcutkeys for JAWS; enable **Allow Web Application Reserved Keystrokes** in JAWS to allow the web shortcuts. H is not reserved, leaving it available for heading navigation.
 
 Serve this folder locally if desired:
 
@@ -31,19 +31,19 @@ The deck retains the full ProSem material. For a 15-minute talk, prioritize the 
 
 The source is `slides.qmd`; the checked-in `slides.html` and `slides_files/` are the published presentation. The original pinned `requirements.txt` is retained. Use a compatible Python environment with py-maidr 1.27.0 and matplotlib 3.10.6, set `QUARTO_PYTHON` to that environment, and run `quarto render slides.qmd`. On Windows, `render.ps1` also finds a project-local `.venv` or the original sibling ProSem environment.
 
-## Reusable Overview Blocker filter
+## Reusable JY Accessibility filter
 
-Copy `_extensions/overview-blocker/` into another Quarto project, or install the packaged ZIP with `quarto add ./overview-blocker.zip`. Enable it in a document or `_quarto.yml`:
+Copy `_extensions/jy-a11y/` into another Quarto project, or install the packaged ZIP with `quarto add ./jy-a11y.zip`. Enable it in a document or `_quarto.yml`:
 
 ```yaml
 format: revealjs
 filters:
-  - overview-blocker
+  - jy-a11y
 ```
 
-The Lua-only filter applies to Reveal.js output, overrides an explicit `overview: true`, and leaves other formats and keyboard bindings unchanged. It injects no JavaScript and installs no global Esc handler. See `_extensions/overview-blocker/README.md` for details.
+The filter applies only to Reveal.js output. Lua disables Overview and inserts the static JAWS shortcut declaration; a small inline script disables H through Reveal's native keyboard configuration while preserving other bindings and `keyboard: false`. It installs no global key handler and changes no screen-reader settings. See `_extensions/jy-a11y/README.md` for details.
 
-Run the rendering regression tests with PowerShell: `./tests/test-overview-blocker.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Tested with Quarto 1.11.5.
+Run the rendering regression tests with PowerShell: `./tests/test-jy-a11y.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Run `node ./tests/test-jy-a11y.mjs` for runtime regression checks. Tested with Quarto 1.11.5. Actual JAWS key interception remains unverified.
 
 ## Claude.ai example
 

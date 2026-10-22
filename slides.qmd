@@ -28,9 +28,9 @@ format:
     center-title-slide: true
     code-line-numbers: false
     code-copy: true
-# Reusable Lua filter: disable Overview without intercepting Esc.
+# Reveal accessibility: no Overview/H navigation; JAWS J/K/N/P reservations.
 filters:
-  - overview-blocker
+  - jy-a11y
 execute:
   echo: false
   cache: false
