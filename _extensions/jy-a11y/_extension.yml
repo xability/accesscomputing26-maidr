@@ -1,7 +1,9 @@
 title: jy-a11y
 author: JooYoung Seo
-version: 1.1.2
+version: 1.2.0
 quarto-required: ">=1.2.0"
 contributes:
   filters:
     - jy-a11y.lua
+  revealjs-plugins:
+    - speaker-view

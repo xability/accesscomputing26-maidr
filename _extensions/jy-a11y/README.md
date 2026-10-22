@@ -16,6 +16,8 @@ Or copy this complete directory to _extensions/jy-a11y/. Enable in your document
 format: revealjs
 filters:
   - jy-a11y
+revealjs-plugins:
+  - jy-a11y
 ~~~
 
 When upgrading, replace overview-blocker in the filter list with jy-a11y. The old extension folder can be removed.
@@ -37,7 +39,7 @@ When upgrading, replace overview-blocker in the filter list with jy-a11y. The ol
 
 Enable **Allow Web Application Reserved Keystrokes** in JAWS Settings Center or Quick Settings (wording may vary by version). With this setting enabled, JAWS can pass declared keys to the web application instead of its own quick-navigation commands. This is a page-wide, nonstandard JAWS convention, NOT a per-element focus boundary or an ARIA attribute. The attribute must be on BODY itself; placing it on an empty DIV inside BODY failed in user testing. Merely adding the attribute cannot force a user's screen reader to surrender keys.
 
-Only unmodified lowercase f/s/j/k/n/p are declared. F retains native fullscreen behavior; S retains native speaker-view behavior. H, Shift+H and other screen-reader commands are not reserved by this filter. No NVDA/VoiceOver compatibility claim is made. Child iframe documents are not modified, and chart shortcuts/handlers are untouched. In-page widgets should continue to manage their own keyboard events normally.
+Only unmodified lowercase f/s/j/k/n/p are declared. F retains native fullscreen behavior; S retains native speaker-view behavior. H, Shift+H and other screen-reader commands are not reserved by this filter. No NVDA/VoiceOver compatibility claim is made. Chart iframe documents and chart shortcuts/handlers are untouched. With the speaker-view plugin enabled, slide receiver frames load the same controls-landmark fix. In-page widgets should continue to manage their own keyboard events normally.
 
 No global keydown handler, focus trap, forced application role, fullscreen lock, or screen-reader setting changes are installed. Later custom JavaScript may reconfigure Reveal. Reveal's stock help text may still list H/Overview even though their navigation actions are disabled.
 
@@ -66,3 +68,20 @@ The 1.1.0 empty DIV declaration was present in the DOM but the user reported tha
 - Chromium, page-wide JSON dictionary attribute: https://chromium.googlesource.com/chromium/src/+/e7eb5511a93f74f5857cb56378737aad3ae850f7%5E%21/
 - Reveal.js keyboard overrides: https://revealjs.com/keyboard/
 - Quarto Lua includes: https://quarto.org/docs/extensions/lua-api.html
+
+
+## 1.2.0: accessible speaker view
+
+Enable **both** `filters: [jy-a11y]` and `revealjs-plugins: [jy-a11y]` for the full extension. Existing filter-only projects keep their original overview, H-key and JAWS behavior; add the plugin entry to enable the speaker-view backport.
+
+- Layout has a stable native label and a visible keyboard-focus outline. Its selected value remains separate from the accessible name.
+- Named regions: Current slide, Upcoming slide, Time, and Speaker notes (when notes are present). Preview iframes also have descriptive titles.
+- Native controls in the speaker window retain their own keys instead of forwarding them to the presentation.
+- Legacy slide-controls wrappers receive `role="none"`, removing their implicit complementary landmark without removing/replacing buttons or their listeners. Already-patched DIV wrappers are left unchanged.
+- No global Quarto installation changes, polling, window.open interception, screen-reader settings changes, or chart modifications.
+
+This bundles the reveal.js 5.1.0 Notes backport from [reveal.js #3953](https://github.com/hakimel/reveal.js/pull/3953) / [Quarto #15164](https://github.com/quarto-dev/quarto-cli/pull/15164). It is a temporary compatibility backport; review it when upgrading Quarto to a version that includes those fixes. The existing Space-to-next-slide behavior inside a slide preview is not changed.
+
+The plugin intentionally registers the patched `notes` implementation before Quarto's built-in one. Reveal 5.1.0 logs its duplicate-notes warning while skipping the stock instance; there is only one active Notes plugin. See `speaker-view/README.md` for the loading order and source provenance.
+
+Browser tests: `cd tests`, `npm install`, `npx playwright install chromium`, then `npm test`. The browser matrix covers normal/self-contained output over HTTP and file URLs.

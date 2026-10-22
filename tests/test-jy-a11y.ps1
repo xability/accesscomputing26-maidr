@@ -17,6 +17,7 @@ function Render-Case($Name, [string[]]$Yaml, $To = 'revealjs', $Checks = @{}) {
   New-Item -ItemType Directory -Path (Join-Path $dir '_extensions') -Force | Out-Null
   Copy-Item $ExtensionRoot (Join-Path $dir '_extensions\jy-a11y') -Recurse
   Write-Text (Join-Path $dir 'assert-unchanged.lua') "function Meta(meta) if meta.overview ~= true then error('Non-Reveal metadata changed') end return meta end"
+  if ($To -eq 'revealjs' -and $Name -ne 'baseline-unfiltered') { $Yaml += 'revealjs-plugins: [jy-a11y]' }
   $lines = @('---') + $Yaml + @('---', '', '## First', '', 'First slide.', '', '## Second', '', 'Second slide.')
   $source = Join-Path $dir 'example.qmd'
   Write-Text $source ($lines -join [Environment]::NewLine)
@@ -38,7 +39,7 @@ function Render-Case($Name, [string[]]$Yaml, $To = 'revealjs', $Checks = @{}) {
   Write-Output "PASS $Name"
 }
 try {
-  $blocked = @{overview='(?m)^\s*overview:\s*false\s*,'; runtime='<script id="jy-a11y"'; reserved='data-at-shortcutkeys'}
+  $blocked = @{overview='(?m)^\s*overview:\s*false\s*,'; runtime='<script id="jy-a11y"'; reserved='data-at-shortcutkeys'; speaker='(?:jy-speaker-view/notes.js|speaker-layout-dropdown)'}
   Render-Case 'baseline-unfiltered' @('format:', '  revealjs:', '    overview: true') 'revealjs' @{overview='(?m)^\s*overview:\s*true\s*,'}
   Render-Case 'default-blocked' @('format: revealjs', 'filters: [jy-a11y]') 'revealjs' $blocked
   Render-Case 'explicit-true-overridden' @('format:', '  revealjs:', '    overview: true', 'filters: [jy-a11y]') 'revealjs' $blocked
@@ -50,7 +51,7 @@ try {
   $project = Join-Path $run 'project-inherited'
   New-Item -ItemType Directory -Path (Join-Path $project '_extensions') -Force | Out-Null
   Copy-Item $ExtensionRoot (Join-Path $project '_extensions\jy-a11y') -Recurse
-  Write-Text (Join-Path $project '_quarto.yml') (@('project:', '  type: default', 'format: revealjs', 'filters: [jy-a11y]') -join [Environment]::NewLine)
+  Write-Text (Join-Path $project '_quarto.yml') (@('project:', '  type: default', 'format: revealjs', 'filters: [jy-a11y]', 'revealjs-plugins: [jy-a11y]') -join [Environment]::NewLine)
   Write-Text (Join-Path $project 'example.qmd') (@('---', 'format:', '  revealjs:', '    overview: true', '---', '', '## First', '', 'First slide.') -join [Environment]::NewLine)
   Push-Location $project
   try {

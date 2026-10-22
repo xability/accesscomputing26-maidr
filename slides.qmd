@@ -28,8 +28,10 @@ format:
     center-title-slide: true
     code-line-numbers: false
     code-copy: true
-# Reveal accessibility: no Overview/H navigation; JAWS J/K/N/P reservations.
+# Reveal accessibility: no Overview/H navigation, JAWS shortcuts, accessible speaker view.
 filters:
+  - jy-a11y
+revealjs-plugins:
   - jy-a11y
 execute:
   echo: false

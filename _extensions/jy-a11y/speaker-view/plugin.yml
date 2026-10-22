@@ -1,0 +1,4 @@
+name: JYSpeakerView
+script:
+  - notes.js
+  - controls.js

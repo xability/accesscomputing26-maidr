@@ -39,6 +39,8 @@ Copy `_extensions/jy-a11y/` into another Quarto project, or install the packaged
 format: revealjs
 filters:
   - jy-a11y
+revealjs-plugins:
+  - jy-a11y
 ```
 
 The filter applies only to Reveal.js output. Lua disables Overview and includes a script that sets the JAWS shortcut declaration directly on BODY; a small inline script disables H through Reveal's native keyboard configuration while preserving other bindings and `keyboard: false`. It installs no global key handler and changes no screen-reader settings. See `_extensions/jy-a11y/README.md` for details.
@@ -78,3 +80,16 @@ The initial response printed a bare visualize command as text. A delivery-only f
 The upstream converter, guidance and regression tests were corrected in [maidr-skill PR #41](https://github.com/xability/maidr-skill/pull/41). The PR is submitted, not yet merged. The full test suite ran 137 tests with 132 passing; the five failures also reproduce on untouched baseline bc21685. See demo/chatgpt-inline-verification.json for scoped browser evidence. Physical braille hardware, screen-reader audio, and data-dependent sonification in the actual ChatGPT frame remain untested.
 
 The exact exported fragment is preserved at demo/chatgpt-output-fragment.html. The chart page adds only a document wrapper and source/overlap notes, not a redraw. Its bundled maidr.js 4.16.0 passed the validator in the same current skill package installed in ChatGPT (0 errors, 0 warnings). The bundle starts in English, uses session-local settings, and has no AI-chat network access. See demo/chatgpt-provenance.json.
+
+
+## 1.2.0: accessible speaker view
+
+Enable **both** `filters: [jy-a11y]` and `revealjs-plugins: [jy-a11y]` for the full extension. Existing filter-only projects keep their original overview, H-key and JAWS behavior; add the plugin entry to enable the speaker-view backport.
+
+- Layout has a stable native label and a visible keyboard-focus outline. Its selected value remains separate from the accessible name.
+- Named regions: Current slide, Upcoming slide, Time, and Speaker notes (when notes are present). Preview iframes also have descriptive titles.
+- Native controls in the speaker window retain their own keys instead of forwarding them to the presentation.
+- Legacy slide-controls wrappers receive `role="none"`, removing their implicit complementary landmark without removing/replacing buttons or their listeners. Already-patched DIV wrappers are left unchanged.
+- No global Quarto installation changes, polling, window.open interception, screen-reader settings changes, or chart modifications.
+
+This bundles the reveal.js 5.1.0 Notes backport from [reveal.js #3953](https://github.com/hakimel/reveal.js/pull/3953) / [Quarto #15164](https://github.com/quarto-dev/quarto-cli/pull/15164). It is a temporary compatibility backport; review it when upgrading Quarto to a version that includes those fixes. The existing Space-to-next-slide behavior inside a slide preview is not changed.
