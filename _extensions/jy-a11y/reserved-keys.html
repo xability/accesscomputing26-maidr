@@ -1,2 +1,27 @@
-<!-- JAWS: requires Allow Web Application Reserved Keystrokes. Page-wide hint. -->
-<div data-at-shortcutkeys='{"j":"Next slide or navigate down","k":"Previous slide or navigate up","n":"Next slide","p":"Previous slide"}'></div>
+<script id="jy-a11y-reserved-keys">
+(function (document) {
+  "use strict";
+  // JAWS reads this declaration on BODY, not an empty before-body DIV.
+  // Matches the JAWS-tested approach in yihui/xaringan#262.
+  const body = document.body;
+  if (!body) return;
+  let existing = {};
+  const declaration = body.getAttribute("data-at-shortcutkeys");
+  if (declaration) {
+    try {
+      existing = JSON.parse(declaration);
+      if (!existing || typeof existing !== "object" || Array.isArray(existing)) return;
+    } catch (_) {
+      // Do not destroy an author's unparseable declaration.
+      return;
+    }
+  }
+  const shortcuts = {
+    j: "Next slide or navigate down",
+    k: "Previous slide or navigate up",
+    n: "Next slide",
+    p: "Previous slide"
+  };
+  body.setAttribute("data-at-shortcutkeys", JSON.stringify({ ...existing, ...shortcuts }));
+})(document);
+</script>

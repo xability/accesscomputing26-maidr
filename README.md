@@ -41,9 +41,9 @@ filters:
   - jy-a11y
 ```
 
-The filter applies only to Reveal.js output. Lua disables Overview and inserts the static JAWS shortcut declaration; a small inline script disables H through Reveal's native keyboard configuration while preserving other bindings and `keyboard: false`. It installs no global key handler and changes no screen-reader settings. See `_extensions/jy-a11y/README.md` for details.
+The filter applies only to Reveal.js output. Lua disables Overview and includes a script that sets the JAWS shortcut declaration directly on BODY; a small inline script disables H through Reveal's native keyboard configuration while preserving other bindings and `keyboard: false`. It installs no global key handler and changes no screen-reader settings. See `_extensions/jy-a11y/README.md` for details.
 
-Run the rendering regression tests with PowerShell: `./tests/test-jy-a11y.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Run `node ./tests/test-jy-a11y.mjs` for runtime regression checks. Tested with Quarto 1.11.5. Actual JAWS key interception remains unverified.
+Run the rendering regression tests with PowerShell: `./tests/test-jy-a11y.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Run `node ./tests/test-jy-a11y.mjs` for runtime regression checks. Tested with Quarto 1.11.5. Version 1.1.1 corrects the failed empty-DIV declaration by setting the attribute on BODY, following JooYoung’s JAWS-verified [xaringan PR #262](https://github.com/yihui/xaringan/pull/262). Current JAWS key interception still needs retesting.
 
 ## Claude.ai example
 
