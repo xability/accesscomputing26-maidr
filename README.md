@@ -17,7 +17,7 @@ This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProS
 
 Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
 
-The bundled `jy-a11y` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen. H no longer navigates backwards. The filter also declares J/K/N/P through data-at-shortcutkeys for JAWS; enable **Allow Web Application Reserved Keystrokes** in JAWS to allow the web shortcuts. H is not reserved, leaving it available for heading navigation.
+The bundled `jy-a11y` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen. H no longer navigates backwards. The filter also declares F/S/J/K/N/P through data-at-shortcutkeys for JAWS; enable **Allow Web Application Reserved Keystrokes** in JAWS to allow the web shortcuts. H is not reserved, leaving it available for heading navigation.
 
 Serve this folder locally if desired:
 
@@ -43,7 +43,7 @@ filters:
 
 The filter applies only to Reveal.js output. Lua disables Overview and includes a script that sets the JAWS shortcut declaration directly on BODY; a small inline script disables H through Reveal's native keyboard configuration while preserving other bindings and `keyboard: false`. It installs no global key handler and changes no screen-reader settings. See `_extensions/jy-a11y/README.md` for details.
 
-Run the rendering regression tests with PowerShell: `./tests/test-jy-a11y.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Run `node ./tests/test-jy-a11y.mjs` for runtime regression checks. Tested with Quarto 1.11.5. Version 1.1.1 corrects the failed empty-DIV declaration by setting the attribute on BODY, following JooYoung’s JAWS-verified [xaringan PR #262](https://github.com/yihui/xaringan/pull/262). Current JAWS key interception still needs retesting.
+Run the rendering regression tests with PowerShell: `./tests/test-jy-a11y.ps1`. They cover an unfiltered baseline, defaults, explicit true/false, unrelated options, self-contained HTML, plain HTML, Word, and project-level activation. Run `node ./tests/test-jy-a11y.mjs` for runtime regression checks. Tested with Quarto 1.11.5. Version 1.1.1 corrects the failed empty-DIV declaration by setting the attribute on BODY, following JooYoung’s JAWS-verified [xaringan PR #262](https://github.com/yihui/xaringan/pull/262). The user confirmed the BODY fix works in JAWS. Version 1.1.2 adds F (fullscreen) and S (speaker view) to the same declaration.
 
 ## Claude.ai example
 

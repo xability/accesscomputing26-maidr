@@ -1,6 +1,6 @@
 title: jy-a11y
 author: JooYoung Seo
-version: 1.1.1
+version: 1.1.2
 quarto-required: ">=1.2.0"
 contributes:
   filters:

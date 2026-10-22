@@ -30,14 +30,14 @@ When upgrading, replace overview-blocker in the filter list with jy-a11y. The ol
 - Sets the reserved-key JSON directly on document.body using an inline script, matching the JAWS-tested xaringan implementation. Existing valid BODY mappings are merged. The resulting element is:
 
 ~~~html
-<body data-at-shortcutkeys='{"j":"Next slide or navigate down","k":"Previous slide or navigate up","n":"Next slide","p":"Previous slide"}'> ... </body>
+<body data-at-shortcutkeys='{"f":"Fullscreen","s":"Speaker view","j":"Next slide or navigate down","k":"Previous slide or navigate up","n":"Next slide","p":"Previous slide"}'> ... </body>
 ~~~
 
 ## JAWS setup and limitations
 
 Enable **Allow Web Application Reserved Keystrokes** in JAWS Settings Center or Quick Settings (wording may vary by version). With this setting enabled, JAWS can pass declared keys to the web application instead of its own quick-navigation commands. This is a page-wide, nonstandard JAWS convention, NOT a per-element focus boundary or an ARIA attribute. The attribute must be on BODY itself; placing it on an empty DIV inside BODY failed in user testing. Merely adding the attribute cannot force a user's screen reader to surrender keys.
 
-Only unmodified lowercase j/k/n/p are declared. H, Shift+H and other screen-reader commands are not reserved by this filter. No NVDA/VoiceOver compatibility claim is made. Child iframe documents are not modified, and chart shortcuts/handlers are untouched. In-page widgets should continue to manage their own keyboard events normally.
+Only unmodified lowercase f/s/j/k/n/p are declared. F retains native fullscreen behavior; S retains native speaker-view behavior. H, Shift+H and other screen-reader commands are not reserved by this filter. No NVDA/VoiceOver compatibility claim is made. Child iframe documents are not modified, and chart shortcuts/handlers are untouched. In-page widgets should continue to manage their own keyboard events normally.
 
 No global keydown handler, focus trap, forced application role, fullscreen lock, or screen-reader setting changes are installed. Later custom JavaScript may reconfigure Reveal. Reveal's stock help text may still list H/Overview even though their navigation actions are disabled.
 
@@ -54,7 +54,7 @@ Rendering tests cover defaults, explicit overview true/false, disabled keyboard,
 
 ## 1.1.1 correction
 
-The 1.1.0 empty DIV declaration was present in the DOM but the user reported that JAWS did not pass keys, despite the setting working on other sites. JooYoung Seo's xaringan PR #262 documents the same placement failure and a BODY-targeted fix; his March 2022 comment confirms JAWS testing there. This version adopts that implementation pattern. Browser checks confirm the BODY declaration and native key handling, not current JAWS interception. A new JAWS test is still needed before calling the issue resolved.
+The 1.1.0 empty DIV declaration was present in the DOM but the user reported that JAWS did not pass keys, despite the setting working on other sites. JooYoung Seo's xaringan PR #262 documents the same placement failure and a BODY-targeted fix; his March 2022 comment confirms JAWS testing there. This version adopts that implementation pattern. Browser checks confirm the BODY declaration and native key handling, not current JAWS interception. The user subsequently confirmed that the BODY fix works in JAWS. Version 1.1.2 adds F (fullscreen) and S (speaker view) using the same mechanism; these two additions have not yet been separately tested by the user.
 
 ## Sources
 
