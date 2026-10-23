@@ -15,7 +15,7 @@ This is a separate copy of the October 14 IS 529 ProSem deck. The original [ProS
 
 ## Present
 
-Open slides.html in Chrome or Edge. All charts are interactive; use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
+Open slides.html in Chrome or Edge. The live demo charts are interactive (the braille photo and sound illustration are explanatory visuals); use Tab to enter, arrow keys to explore, T for text, B for braille, and S for sound. Physical braille hardware and live screen-reader output must be checked on the presentation setup.
 
 The bundled `jy-a11y` Quarto filter disables the thumbnail-grid overview by setting the native `overview` option to `false`, so Esc or O cannot open it during presentation. Esc can still dismiss menus and overlays; this does not lock the browser in fullscreen. H no longer navigates backwards. The filter also declares F/S/J/K/N/P through data-at-shortcutkeys for JAWS; enable **Allow Web Application Reserved Keystrokes** in JAWS to allow the web shortcuts. H is not reserved, leaving it available for heading navigation.
 
@@ -25,7 +25,7 @@ Serve this folder locally if desired:
 
 Then open http://127.0.0.1:8766/slides.html
 
-The deck retains the full ProSem material. For a 15-minute talk, prioritize the framing and modalities, one Python/R example, and the Claude.ai demo. Box plots, Shiny implementation details, architecture and the second R example can be skipped.
+The main deck is now **16 slides for 15 minutes**, including live-demo time and a closing transition buffer. Python uses only the multiline example; R uses only the histogram-plus-density example. Box plots, R bars, Shiny, architecture and detailed installation slides are not in the main route. The full pre-shortening deck is preserved as `slides-full.qmd` and `slides-full.html`, with its own `slides-full_files/` assets. See `PRESENTATION-15MIN.md` for the timed run of show.
 
 ## Render
 

@@ -3,9 +3,9 @@
 # file name, "slides"). A title: would add a title slide.
 pagetitle: "Data (In)sight for All: Multimodal Chart Exploration with MAIDR"
 # AccessComputing Partner Meeting, October 23, 2026, 11:00 Pacific / 13:00 Central.
-# Approximately 15 minutes plus Q&A. Full ProSem deck retained for reuse.
-# Prioritize framing, modalities, one Python/R example, and the Claude.ai demo.
-# Optional detail: Python box plot, Shiny implementation, architecture, R layers.
+# 16 slides, 15 minutes including demos; Q&A follows.
+# Full pre-shortening deck: slides-full.qmd / slides-full.html.
+# Code examples: Python multiline and R histogram+density only.
 format:
   revealjs:
     # FIXME: Remove once the Quarto that renders this deck has
@@ -58,77 +58,9 @@ include-in-header:
 AccessComputing Partner Meeting, October 23, 2026
 
 ::: {.notes}
-Thank you, Brianna, and thanks to the AccessComputing partners for having me. Today I want to talk about a barrier many of us encounter in computing education and research: charts that assume everyone can see.
+00:00–00:30 | 30 seconds
 
-In about fifteen minutes, I will introduce a shared multimodal approach and show how to use it through Python, R, and an AI assistant. The examples are meant for the same classrooms, research groups, and communities that AccessComputing and AccessSTEM support. Then I look forward to your questions.
-:::
-
----
-
-
-
-## Let's Think...
-
-> What good is a chart you **can't see**?
-
-> How do you read a **chart** you can't **see**?
-
-
-
-::: {.notes}
-All right, let's jump right in. We're going to talk about data. You know, it's pretty much the engine behind everything these days. Business, science, you name it. And we usually understand data through things like charts and graphs. They're like a universal language. But what happens when you can't see that language? No, really, think about that. We rely so much on just glancing at a chart and seeing the pattern, right? A spike here, a dip there. So how on earth are you supposed to get any meaning out of a bar chart or a scatter plot if you can't actually see it?
-:::
-
----
-
-## Data Viz Divide {.data-viz-divide-slide}
-
-> **A Picture's Worth...?**
-
-::: columns
-::: {.column width="50%"}
-### For Sighted Users
-
-- **Instant insight**
-- **Visual patterns** at a glance
-- **Effortless** data comprehension
-:::
-
-::: {.column width="50%"}
-### For Users with Visual Impairments
-
-- **Wall** of inaccessible data
-- **Locked door**, with valuable information **trapped** inside
-- **Barriers** to understanding
-:::
-:::
-
-::: {.notes}
-Well, this is the divide. For a sighted person, a chart gives you that instant insight, right? The trends, the weird outliers, they just pop. But for blind and low vision users, that exact same chart can be a total dead end. It's a wall. It completely locks them out of the entire data conversation.
-:::
-
----
-
-## "Design for Them" Approach {.design-for-them-slide}
-
-::: columns
-::: {.column width="50%"}
-- Sighted person to create a chart and then add a separate description as an afterthought
-
-- One group *produces* **boundaries** while the other group just *consumes*
-
-- **One-way street:** power imbalance
-:::
-
-::: {.column width="50%"}
-![](images/design4them.png){alt="A bold horizontal arrow points from the word CREATOR on the left to the word CONSUMER on the right, both in large capital letters. The arrow sits above a thin horizontal line that connects the two words, with a small bracket underneath the arrow. The overall tone is direct and emphasizes a one-way flow of information from creator to consumer, highlighting a sense of separation and power imbalance."}
-:::
-:::
-
-::: {.notes}
-for those who cannot see it. I am sorry, but that's their issue.
-
-This quote just nails the real problem, doesn't it? See, for the longest time, the approach to accessibility has been what you might call design for them. A sighted person makes a chart and then, almost as an afterthought, a separate, often clunky text description gets added for blind and low vision or BLV users. It creates this one-way street, this power imbalance where one group is basically dictating the entire experience for another.
+Thank you, Brianna, and thanks to the AccessComputing partners. Today I will show how blind and sighted people can explore the same chart through sound, braille, text, and conversation. We will use one Python example, one R example, and two short AI demos.
 :::
 
 ---
@@ -156,72 +88,28 @@ This quote just nails the real problem, doesn't it? See, for the longest time, t
 ![](images/design4us.png){fig-align="center" alt="Two groups labeled COLLABORATORS face each other from opposite sides of the image, connected by a double-headed arrow with a handshake icon in the center. A horizontal line runs beneath each group, visually linking them. The design emphasizes mutual cooperation and equal partnership, with a tone that is inclusive and collaborative. The background is clean and minimal, focusing attention on the concept of shared effort. Text in the image: COLLABORATORS (on both sides)."}
 
 ::: {.notes}
-And this slide just lays it all out, side by side. The old way, the 'for them' way, that's the one-way street we talked about. Separate tools, separate experiences, with the sighted creator basically calling all the shots. But this new 'for us' way, well, that's a two-way conversation. It's about creating a single unified framework where everyone, sighted and BLV users, can work together on the exact same visualization, just using different senses to perceive it. It's a huge difference.
-:::
+00:30–01:30 | 60 seconds
 
-
-# Meet {maidr}!
-
-![](images/maidr-logo.png){fig-align="center" width="300px" alt="MAIDR logo"}
-
-> **Data Insight for All.**
-
-::: {.notes}
-And that's what brings us to the solution. It's a bridge, and it's called maidr. And what's so cool about it is that it's not just a tool, it's a whole new way of thinking. It's a shift from design for them to design for us.
+The problem is not simply a missing image description. When one person creates a chart and another only receives a summary, the second person cannot ask their own questions of the data. Design for us means a shared chart with multiple ways to explore it, rather than a separate reduced experience.
 :::
 
 ---
 
-## What is {maidr}? 🔎
+## MAIDR: One Chart, Multiple Ways In
 
-- Multimodal Access and Interactive Data Representation
+**Multimodal Access and Interactive Data Representation**
 
-- Decoupling vision-first approach from data interpretation
+- **Touch:** braille and tactile patterns
+- **Listen:** data values mapped to sound
+- **Read:** exact values and axis labels
+- **Converse:** questions grounded in the chart's data
 
-- Encode **data representation** in multiple modalities
-
-- **Not** a separate, watered-down version for blind users
-
-- **one unified experience**: the same information with **preferred modalities**
-
-::: {.notes}
-And this really gets to its whole reason for being, its motto: Data Insight for All. The goal here isn't to make some separate watered-down version for blind users. Nope. It's about creating one unified experience that lets everybody work with the exact same information together.
-
-It is open source, and it grew out of my IMLS Early Career project. Today it is a family of packages for R, Python, and JavaScript, with more than 119,000 downloads.
-:::
-
----
-
-## Multimodal Data Representation
-
-On top of visualization:
-
-- **Touchable (Braille)** 🖐️
-
-- **Readable (Text)** 📖
-
-- **Audible (Sonification)** 🎶
-
-- **Conversable (AI)** 💬
+**Python · R · AI assistants** → the same MAIDR engine
 
 ::: {.notes}
-The visual stays exactly as you designed it. On top of it, the same plot becomes what we call multimodal. And that just means a user can interact with it in all these different ways. They can explore it on a refreshable braille display, they can read it as simple text, they can hear the data points as musical tones, that's sonification, and they can even ask it questions with a built-in AI chat. Let me take them one at a time.
-:::
+01:30–02:30 | 60 seconds
 
----
-
-## Touchable: Feel Data 🖐️
-
-- Data shape and trend pattern in **Unicode Braille symbols**
-
-- Users can run their fingers across the data to **feel** its **peaks** and **valleys**
-
-- With a **refreshable braille display**, or as a **tactile graph** on a Dot Pad or a Monarch
-
-::: {.notes}
-First up, making data touchable. Maidr can represent a whole plot using braille symbols on what's called a refreshable braille display. So a user can literally run their fingers across the data and feel its shape, its peaks, its valleys.
-
-And on a multiline tactile display, such as the Dot Pad or the Monarch, the plot itself is raised in pins: a tactile graph.
+The visual chart stays in place. MAIDR carries the underlying data with it, so people can choose or combine modalities. These are not separate datasets or separate charts. Python, R, and AI assistants are different entry points to the same interaction model. I will demonstrate the controls once, then reuse them.
 :::
 
 ---
@@ -230,33 +118,9 @@ And on a multiline tactile display, such as the Dot Pad or the Monarch, the plot
 ![](images/box-plot%20braille.png){.nostretch alt="A box plot showing life expectancy by continent with braille display device, demonstrating accessible data visualization"}
 
 ::: {.notes}
-This is a box plot of life expectancy by continent. Above it is the same box plot as one line of braille, and in the photo a hand is reading that line on a refreshable braille display. Each kind of dot pattern stands for a part of the box: the whiskers, the box, the median, the outliers. Read it left to right and you feel where the data is spread out and where it is packed together.
-:::
+02:30–03:15 | 45 seconds
 
----
-
-## Audible: Listen to Data 🔊 {.audible-slide}
-::: columns
-::: {.column width="55%"}
-
-- **Sonification** turns data into **audible tones**
-
-- x-axis value: **stereo panning** position
-
-- y-axis value: **pitch**
-
-- As a trend goes up, a musical pitch rises with it
-
-:::
-::: {.column width="45%"}
-
-![](images/sonification-concept.png){alt="Diagram illustrating how data is mapped to sound for sonification. Musical notes are shown on a staff, with vertical bars above each note representing data values. Arrows indicate pitch mapping from data values to musical notes and stereo panning from left to right speakers. The diagram includes icons for sound and music, and the text Pitch Mapping and Stereo Panning. The overall tone is informative and technical, showing how data trends can be experienced through audio."}
-
-:::
-:::
-
-::: {.notes}
-But touch is just the beginning. It also uses something called sonification, which is just a fancy word for turning data into sound. Imagine you're tracking a trend line. As the line goes up, a musical pitch goes up with it. You could literally hear the data.
+This photograph shows a box plot represented on a refreshable braille display. The dot patterns convey its structure, including the box, median, and whiskers. This is a quick illustration of touch, not another coding demonstration.
 :::
 
 ---
@@ -302,104 +166,25 @@ plt.subplots_adjust(top=0.90, right=0.98, left=0.10, bottom=0.12)
 :::
 
 ::: {.notes}
-Play the audio. It is five seconds.
+03:15–04:00 | 45 seconds
 
-That is a scatter plot with a strong positive relationship. You heard the pitch climb as the sound moved from your left ear to your right. Nobody had to tell you the trend goes up.
+Play the five-second audio clip once. Pitch rises as values increase, and stereo position follows the horizontal axis. A reader can hear a trend before checking individual values. Stop after this short example; the live multiline chart will show point-by-point exploration.
 :::
 
 ---
 
-## Readable: Understand Data 📖
+## One Keyboard, Multiple Modalities
 
-- A straightforward **text** of the plot's key features
-
-- Get a clean, simple summary of what the plot is showing
-
-::: {.notes}
-And of course there is a simple text mode. Each point you land on is read out with its axis labels and its value, and one key gives you a description of the whole plot.
-:::
-
----
-
-## Conversable: Chat with Data 💬
-
-- **Powered by AI/LLMs** (GPT, Gemini, Claude)
-- **Ask questions** and get **co-insight** of the plot
-- **Natural language** data analysis
-
-- **Example Query** Can you summarize the main trend for me?
+- **Tab:** enter the chart; **Shift+Tab:** return to the slide
+- **Arrow keys:** explore values and series
+- **T / B / S:** text / braille / sound
+- **Page Up / Page Down:** switch layers
+- **?:** chart AI chat, when configured
 
 ::: {.notes}
-Now, this fourth mode is straight out of science fiction. Maidr actually plugs into conversational AIs: GPT, Gemini, Claude. This means you can just talk to the chart. You can literally ask it questions like, "Hey, what's the highest value here?" or "Can you summarize the main trend for me?" It's like having a data analyst built right into the visualization.
-:::
+04:00–04:30 | 30 seconds
 
-
-# Beyond Theory: {maidr} in Action!
-
-![](images/maidr-logo.png){fig-align="center" width="300px" alt="MAIDR logo"}
-
-::: {.notes}
-Beyond theory: maidr in action. Let's cut to the chase.
-:::
-
----
-
-## One Engine, Three Ways In
-
-- **Python:** `import maidr` with Matplotlib, Seaborn, Plotly, or Altair
-
-- **R:** `library(maidr)` with ggplot2 or base R graphics
-
-- **AI assistants:** the maidr skill for Claude and ChatGPT
-
-- Each one hands your plot **and its data** to the same engine, **maidr.js**
-
-::: {.notes}
-Here is the map for the next fifteen minutes. Three ways in, depending on how you make your plots: Python, R, or an AI assistant that writes the code for you.
-
-Whichever door you take, the same thing happens. Your plot goes out as you drew it, and the data behind it travels along. One engine, maidr.js, turns that into sound, braille, text, and conversation. So what you learn on the first chart works on all the others.
-:::
-
----
-
-## Keyboard-Toggle Modalities
-
-| Key | Function |
-| :--- | :--- |
-| `Arrow Keys` | Move around the plot |
-| `B` | Toggle Braille Mode |
-| `T` | Toggle Text Mode |
-| `S` | Toggle Sonification Mode |
-| `D` | Open Plot Description |
-| `Page Up` / `Page Down` | Switch Layers |
-| `?` | Open Chat AI Mode |
-
-::: {.notes}
-And the best part, it's all driven by the keyboard. You're in complete control. Users can just use the arrow keys to move from data point to data point. And then with a single key press, they can switch modes. B for braille, T for text, S to hear the sonification. D gives a description of the whole plot, Page Up and Page Down move between the layers of a plot, and the question mark opens the AI chat. It puts the user right in the driver's seat.
-:::
-
----
-
-## Python: Just Plug In
-
-```{python}
-#| eval: false
-#| echo: true
-
-# Step1: Import
-import maidr #<<
-
-import matplotlib.pyplot as plt
-
-# Step2: Create a plot
-plt.bar(['A', 'B', 'C'], [1, 2, 3])
-
-# Step3: Show with maidr
-maidr.show() #<<
-```
-
-::: {.notes}
-Python first. And when I say plug in, I am not kidding. The simplicity here is honestly what makes it so powerful. To make your plot multimodal, you write your normal plot code. Then you add one line, `import maidr`, and finally, instead of the old `plt.show()`, you just use `maidr.show()`. That's it. Two tiny changes to your code.
+These keys apply while focus is inside the chart. Outside the chart, S opens the slide speaker view. I will use arrows and text first, then briefly toggle braille and sound. The AI chat needs a configured provider; it is not part of the bundled ChatGPT chart demo.
 :::
 
 ---
@@ -488,211 +273,64 @@ life_idx = ((life_exp / life_exp.iloc[0]) * 100.0).round(2)
 gdp_idx = ((gdp_k / gdp_k.iloc[0]) * 100.0).round(2)
 pop_idx = ((pop_m / pop_m.iloc[0]) * 100.0).round(2)
 
-# Create the complete plot (but don't display it)
-plt.figure(figsize=(6, 4))
-lineplot = plt.plot(x, life_idx, "bo-", label="Life expectancy index", linewidth=2, markersize=6)
-plt.plot(x, gdp_idx, "rs--", label="GDP per capita index", linewidth=2, markersize=6)
-plt.plot(x, pop_idx, "g^:", label="Population index", linewidth=2, markersize=6)
-plt.title(f"{country}: Indexed trends (base {base_year}=100)")
-plt.xlabel("Year")
-plt.ylabel("Index")
-plt.legend()
-plt.tight_layout()
-plt.subplots_adjust(top=0.90, right=0.98, left=0.10, bottom=0.12)
-plt.close()  # Close the matplotlib figure to prevent display
 ```
 
 ```{python}
 #| echo: true
-#| eval: true
-#| output-location: slide
+#| eval: false
 
 import maidr #<<
 
+fig = plt.figure(figsize=(6, 4))
 plt.plot(x, life_idx, "bo-", label="Life expectancy index")
 plt.plot(x, gdp_idx, "rs--", label="GDP per capita index")
 plt.plot(x, pop_idx, "g^:", label="Population index")
 plt.xlabel("Year")
-plt.ylabel("Index")
+plt.ylabel("Index (first year = 100)")
+plt.title("United States: indexed trends (base = 100)")
+plt.legend()
+plt.tight_layout()
 
-maidr.show() #<<
+maidr.show(fig) #<<
 ```
 
 ::: {.notes}
-A real one. Three lines for the United States since 1950: life expectancy, GDP per capita, and population, each indexed to 100 in the first year. The two highlighted lines are all that maidr adds.
+04:30–05:15 | 45 seconds
 
-(Next slide, the plot itself. Tab moves into it. Right arrow walks the years, and the pitch follows the line. Up arrow changes lines: population, then GDP per capita. T turns text on, B braille, S sound. Shift and Tab return to the slides.)
+One example in Python: three United States time series, each indexed to 100 in its first year. The plot code remains familiar Matplotlib. Import MAIDR and pass the figure to maidr.show. Indexing compares relative change, not the original units.
 :::
 
 ---
 
-## Python: Box Plot {.box-plot-slide}
+## Python: Explore the Multiline Plot
 
 ```{python}
 #| echo: false
-#| eval: true
 
-# FIXME: Remove after xability/py-maidr#911 is fixed and rechecked.
-# Keep the installed package untouched; patch only while this slide renders.
-# Seaborn's inverted Y axis otherwise makes Up move visually down.
-from charts.boxplot_order_workaround import install_box_order_workaround
-restore_box_order = install_box_order_workaround()
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-import maidr
-import pandas as pd
-
-# Load gapminder and filter for 2007 data
-url = "https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv"
-gm = pd.read_csv(url)
-df2 = gm[(gm["year"] == 2007) & (gm["continent"].isin(["Africa", "Europe"]))].copy()
-df2["gdp_k"] = df2["gdpPercap"] / 1000.0
-
-# Create the complete plot
-plt.figure(figsize=(6, 4))
-ax = sns.boxplot(
-    x="gdp_k", y="continent", data=df2, order=["Africa", "Europe"], palette=["#4C78A8", "#F58518"], showfliers=True
-)
-plt.title("GDP per capita (2007, k$): Africa vs Europe")
-plt.xlabel("GDP per capita (thousands $)")
-plt.ylabel("Continent")
-plt.subplots_adjust(top=0.90, right=0.98, left=0.10, bottom=0.12)
-plt.close()
-```
-
-```{python}
-#| echo: true
-#| eval: true
-#| output-location: slide
 import maidr #<<
 
+fig = plt.figure(figsize=(6, 4))
+plt.plot(x, life_idx, "bo-", label="Life expectancy index")
+plt.plot(x, gdp_idx, "rs--", label="GDP per capita index")
+plt.plot(x, pop_idx, "g^:", label="Population index")
+plt.xlabel("Year")
+plt.ylabel("Index (first year = 100)")
+plt.title("United States: indexed trends (base = 100)")
+plt.legend()
+plt.tight_layout()
 
-sns.boxplot(
-    x="gdp_k", y="continent", data=df2,
-    order=["Africa", "Europe"],  showfliers=True
-)
-
-plt.xlabel("GDP per capita (thousands $)")
-plt.ylabel("Continent")
-
-maidr.show() #<<
+maidr.show(fig) #<<
 ```
 
 ::: {.notes}
-Same two lines, now with Seaborn: GDP per capita in 2007, Africa above Europe, as a box plot.
+05:15–07:00 | 105 seconds
 
-(Next slide. Tab in. Right arrow moves through one box: from the lower outliers and the minimum, through 25%, 50%, and 75%, to the maximum and the upper outliers. Up arrow goes from Europe to Africa; Down arrow returns from Africa to Europe. B shows the braille, the kind of pattern on the "It Feels Like This" slide.)
+Tab into the chart. Move across a few years, then change series with Up/Down. Read one exact value using text mode. Briefly toggle B and S to show that the same data supports braille and sound. Do not walk every point. Finish the Python demo by 07:00, then Shift+Tab back to the deck.
 :::
 
 ---
 
-## {Shiny} + {maidr} integration
-
-```{python}
-#| include: false
-#| eval: true
-
-# The boxplot-only workaround must not affect later chart demonstrations.
-restore_box_order()
-```
-
-```{python}
-#| eval: false
-#| code-line-numbers: false
-#| echo: true
-# Minimal Shiny-for-Python app structure with MAIDR-ready plots
-from shiny import App, ui
-
-# UI with tabs mirroring slides
-app_ui = ui.page_fluid( # implement ui.navset_tab with tabs mirroring slides
-)
-
-@output
-@render_maidr #<<
-def create_histogram_output():
-    ax = ...  # build matplotlib/seaborn axes
-    return ax
-
-app = App(app_ui, server)
-```
-Source: [xability/a11y_dashboard](https://github.com/xability/a11y_dashboard)
-
-::: {.notes}
-Plots do not only live in notebooks and slides. In a Shiny dashboard, one decorator, render_maidr, turns each plot the dashboard draws into the same multimodal chart, and it stays that way as the reader changes the inputs.
-:::
-
----
-
-## maidr Shiny Dashboard
-
-```{=html}
-<div style="margin: 0 auto; width: 100%; max-width: 1400px; height: 85vh;">
-  <iframe
-    src="https://xabilitylab.shinyapps.io/a11y_dashboard/"
-    title="MAIDR Shiny Dashboard"
-    style="display:block; width:100%; height:100%; border:0; border-radius: 8px;"
-    loading="lazy"
-    allow="bluetooth; serial; hid; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
-</div>
-```
-
-::: {.notes}
-And this is a dashboard built that way, live on shinyapps.io: histogram, box, scatter, bar, line, heatmap, multiline, multilayer and multipanel plots, and one you design yourself. Every plot in it is a maidr chart, so the same keys work: pick a tab, Tab into the plot, and use the arrows.
-
-(Live: the app can take a few seconds to wake, and a tab's chart a few more to appear. Tab moves into the dashboard; Shift+Tab, a few times, comes back to the slides.)
-:::
-
----
-
-## The Magic behind the Scenes {.architecture-slide}
-
-![](images/arch.png){alt="A flowchart of how maidr turns a Matplotlib or Seaborn plot into an accessible one, in three layers. Matplotlib and Seaborn plots go into the Interception Layer, which holds Monkey Patching and, feeding it, a Context Manager. From there an arrow leads down to the Extraction Layer, where a MAIDR Plot Factory feeds a Figure Manager, the Figure Manager feeds MAIDR Plots, and Extractor Mixins feed MAIDR Plots too. The Extraction Layer leads to the Rendering Layer, where a Highlight Context feeds an SVG with MAIDR data. The output of the Rendering Layer is the MAIDR accessible plot."}
-
-::: {.notes}
-So, you're probably wondering, what's the trick? How do two lines of Python pull this off? It's a really clever three-step dance, and it happens in a split second. I love the analogy that it's like a simultaneous translator for data. First, maidr intercepts the command to create a plot. Then it pulls out all the important bits: the data, the structure, what kind of chart it is. And finally, it injects those accessible layers right into the plot before it ever gets displayed. Totally seamless.
-
-The R package takes the same three steps for ggplot2 and base R graphics, and R is where we go next.
-:::
-
----
-
-## R: One Line
-
-```r
-library(maidr) #<<
-library(ggplot2)
-
-ggplot(mpg, aes(class)) +
-  geom_bar(fill = "steelblue") +
-  labs(title = "Cars by class", x = "Class", y = "Number of cars")
-```
-
-::: {.notes}
-Now R. Here it is one line: `library(maidr)`. After that, any ggplot you print opens as a multimodal plot. Nothing else in your code changes.
-
-This is the mpg data that ships with ggplot2: how many cars there are in each class.
-:::
-
----
-
-## R: One Line
-
-```{python}
-#| echo: false
-#| eval: true
-
-show_saved_chart("charts/r-bar.html", "Cars by class", width=680)
-```
-
-::: {.notes}
-Same keys as in Python. Tab into the plot, then the arrow keys: seven bars, from two-seaters to SUVs. B for braille, T for text. Shift and Tab bring me back to the slides.
-:::
-
----
-
-## R: Layers
+## R: Density with ggplot2
 
 ```r
 library(maidr) #<<
@@ -706,12 +344,14 @@ ggplot(mpg, aes(hwy, after_stat(density))) +
 ```
 
 ::: {.notes}
-Plots are often more than one layer. This one puts a density curve over a histogram of highway fuel economy. Still one line of maidr.
+07:00–07:30 | 30 seconds
+
+One R example: highway fuel economy, with a density curve over a histogram. Loading maidr makes the ggplot accessible. The overlay lets us demonstrate moving between layers without introducing a second dataset or example.
 :::
 
 ---
 
-## R: Layers
+## R: Explore the Density Curve
 
 ```{python}
 #| echo: false
@@ -721,63 +361,33 @@ show_saved_chart("charts/r-hist-density.html", "Highway fuel economy", width=680
 ```
 
 ::: {.notes}
-Tab in. The arrow keys walk the bins of the histogram. Page Up moves to the next layer, the density curve, and now the arrows follow the curve: listen to it rise and fall. Page Down takes me back to the histogram.
+07:30–08:45 | 75 seconds
+
+Tab in. Briefly inspect the histogram, then use Page Up/Page Down to select the density curve. Follow a few points with the arrows and compare the shape with the bins. The controls transfer directly from Python. Leave the chart by 08:45.
 :::
 
 ---
 
-## AI: Ask Your Assistant
+## AI: Ask for a Chart, Not Just a Picture {.prompt-slide}
 
-- AI assistants hand you plots as **pictures**: nothing to hear, touch, or explore
+Install the [MAIDR skill](https://github.com/xability/maidr-skill) once in Claude or ChatGPT.
 
-- The **maidr skill** teaches them to make **every** plot multimodal
-
-- It picks Python, R, or JavaScript for you, and **checks its own work**
-
-- For **Claude** and **ChatGPT**, and for Codex, Cursor, GitHub Copilot, and Gemini CLI
-
-::: {.notes}
-And the third way in. Many of you no longer write plotting code at all. You ask Claude or ChatGPT for a plot, and what comes back is a picture. To me, that is the same wall all over again.
-
-So we wrote a skill. A skill is a set of instructions an AI assistant loads when the task calls for it. Ours teaches the assistant to make every plot it draws multimodal, whether or not you ask. It picks Python, R, or JavaScript to match your project, and it checks its own work before it hands the plot over.
-:::
-
----
-
-## AI: One-Time Setup
-
-- **Claude Code:** `/plugin marketplace add xability/maidr-skill` then `/plugin install maidr@maidr-skill`
-
-- **ChatGPT.com:** [Download the ready-made ZIP](https://github.com/xability/maidr-skill/releases/download/main-skill/maidr-skill.zip), then **Plugins → Skills → Add → Upload**
-
-- **Claude.ai:** upload the same ZIP in **Customize → Skills → Add** and turn it on
-
-- **Any coding agent:** `npx skills add xability/maidr-skill`
-
-::: {.notes}
-You install it once. For the web apps, download our ready-made ZIP and upload it as a skill, not as a chat attachment. In ChatGPT, this requires a plan or workspace with Skills enabled; both the Illinois workspace and the personal Pro account used in this rehearsal have it. In Claude, enable code execution and turn the skill on. No one needs to clone the repository or build a ZIP. The public plugin directory submissions are not the same thing: Claude is still in review, and current OpenAI approval has not been confirmed. Claude Code can use the third-party marketplace commands on the slide. All of this is documented with official sources in the README of xability slash maidr-skill.
-:::
-
----
-
-## AI: Just Ask for a Plot {.prompt-slide}
-
-```default
+~~~text
 Chart the number of AccessComputing partners in each partner category
 from https://accesscomputing.uw.edu/partners.
-```
+~~~
+
+**Check the source, counts, and interactive output.**
 
 ::: {.notes}
-Here is an example from this community, rather than from our own university: the partner network that brings institutions, organizations, and industry together. This is the same original prompt used in Claude.ai and the personal ChatGPT demo. It asks for a chart and identifies the public source; it does not provide any numbers.
+08:45–09:30 | 45 seconds
 
-In this rehearsal, Claude.ai's workspace had web search disabled, and its code sandbox could not fetch the source domain. I therefore supplied counts checked against the official roster: 77 Institutional Partners, 29 Organizational Partners, and 17 Industry Partners, captured October 20, 2026. These are partner-category memberships, not student counts or program impact measures.
-
-The first exported chart used Chart.js without a MAIDR binding. A follow-up explicitly requested the installed maidr skill and genuine Python binding output. Keep both follow-ups in the conversation when presenting this example: do not claim that this run fetched the data or automatically activated the skill from the first prompt. The full prompt history and source notes are saved under demo/.
+The same task can start with an AI assistant. This prompt asks for an AccessComputing partner chart, but we still need to check the source and test the result. The two saved conversations show different paths, including follow-up corrections. I will not imply either assistant always gets every step right on the first attempt.
 :::
 
 ---
 
-## AI: What Came Back
+## AI: Claude.ai Demo
 
 ```{python}
 #| echo: false
@@ -789,14 +399,12 @@ show_saved_chart(
 )
 ```
 
-Claude.ai · [Open the original demo](https://claude.ai/chat/fbab7127-b46d-4112-8978-bf115b7f7f4d){target="_blank" rel="noopener noreferrer"} (presenter login)
+Claude.ai · [Open the original demo](https://claude.ai/chat/fbab7127-b46d-4112-8978-bf115b7f7f4d){target="_blank" rel="noopener noreferrer"} (presenter login) · [Open chart (no login)](charts/ai-accesscomputing-partners.html){target="_blank" rel="noopener noreferrer"}
 
 ::: {.notes}
-This is the chart exported by Claude.ai, not a replacement drawn outside the conversation. The original conversation opens in a new tab and requires the presenter's signed-in Claude.ai account.
+09:30–11:00 | 90 seconds
 
-The bars represent listed entries in the three official partner categories: Institutional 77, Organizational 29, Industry 17. They sum to 123 category memberships. Teach Access is listed in both Organizational and Industry Partners, so that is 122 unique partners, not 123. The chart preserves that overlap note and credits the official roster. This is a snapshot, not a historical trend or a claim about student outcomes.
-
-Tab into the chart and use the arrow keys to explore. T toggles text, B braille, and S sound. Physical braille hardware and screen-reader audio were not tested in this browser rehearsal. Use the exported HTML in this slide if the live conversation is unavailable. The MAIDR runtime still loads from a CDN, so an internet connection is required.
+Show the exported chart first. Institutional 77, Organizational 29, Industry 17: 123 category memberships, but 122 unique partners because Teach Access appears twice. In this Claude run, web search was unavailable, so I supplied verified counts and explicitly requested MAIDR in a follow-up. Do not claim automatic source retrieval. The original conversation uses the presenter login. Hide sidebar was verified to persist in a fresh tab in the rehearsal browser, but it is a browser preference, not enforced by this link. Use the embedded or standalone chart if the sidebar is visible.
 :::
 
 ---
@@ -813,83 +421,31 @@ show_saved_chart(
 )
 ```
 
-ChatGPT · [Shared chat history](https://chatgpt.com/share/6ad7e7d2-aa08-83e9-90ae-7031a1231ceb){target="_blank" rel="noopener noreferrer"} · [Open chart (no login)](charts/ai-accesscomputing-partners-chatgpt.html){target="_blank" rel="noopener noreferrer"}
+ChatGPT · [Open shared demo](https://chatgpt.com/share/6ad7e7d2-aa08-83e9-90ae-7031a1231ceb){target="_blank" rel="noopener noreferrer"} · [Open chart (no login)](charts/ai-accesscomputing-partners-chatgpt.html){target="_blank" rel="noopener noreferrer"}
 
 ::: {.notes}
-This is a second run of the same one-line prompt, in a personal ChatGPT Pro account with the MAIDR skill installed. ChatGPT fetched the official partner roster itself, counted partner entries rather than named contacts, identified the Teach Access overlap, and generated a real py-maidr chart. It did not need the counts supplied in a follow-up as the Claude.ai rehearsal did. The counts are Institutional 77, Organizational 29, and Industry 17.
+11:00–12:45 | 105 seconds
 
-This slide preserves ChatGPT's generated SVG, MAIDR data binding, and bundled runtime, with only an outer HTML wrapper and source/overlap notes added for presentation. The original file preview passed keyboard and braille checks. After a delivery-only follow-up, the same chart also rendered inside the conversation: Tab entered the MAIDR application, arrows announced 77, 29 and 17, and every highlight matched its original bar. All three values and highlights were checked at actual inline frame widths of 360, 390 and 778 CSS pixels, without horizontal overflow; the full ChatGPT mobile layout was not emulated. B displayed the braille shape. Physical braille hardware, screen-reader audio, and data-dependent sonification in the actual ChatGPT frame remain untested.
-
-The original response printed a bare visualize call instead of rendering the chart. A follow-up corrected the native publication syntax without redrawing it. The new public link includes that complete history and the corrected inline chart; its read-only shared view passed Tab and all three arrow-key/value/highlight checks while signed in. Do not claim that the initial one-line response already rendered inline. A fresh anonymous browser opened the shared conversation without login, but the inline result instead said "Code execution is disabled for this workspace." The signed-in check is not proof of anonymous chart execution. The converter, guidance and regression tests were corrected in upstream maidr-skill PR #41, which is submitted but not merged. Use the direct interactive chart link or this embedded copy for reliable no-login public interaction. The exported bundle works without downloading maidr.js; its UI begins in English, settings are session-local, and its AI chat is unavailable.
+This ChatGPT run retrieved the roster and produced the same counts. The first response needed a delivery correction before the chart rendered inline; the public conversation preserves that history. The shared view was checked in a fresh tab and showed no personal chat-history sidebar. Show one or two bars, not a second full modality tutorial. Anonymous inline execution was blocked in rehearsal. Use the embedded or no-login standalone chart if the shared conversation cannot run it. Finish by 12:45.
 :::
 
 ---
 
-## But Does It Work With...? {.works-with-slide}
+## Try It on Your Own Chart
 
-**119,000+** downloads across CRAN, PyPI, and npm
+~~~text
+Python:  pip install -U maidr
+R:       install.packages("maidr")
+~~~
 
-- **Python:** Matplotlib, Seaborn, Plotly, Altair
-
-- **R:** ggplot2, base R graphics
-
-- **JavaScript:** D3, Plotly.js, Vega-Lite, Observable Plot, Chart.js, Highcharts, ECharts, Google Charts, amCharts, AnyChart, ApexCharts, Frappe Charts, uPlot, TradingView Lightweight Charts, React, Recharts, Victory, Nivo, MUI X Charts
-
-- **BI and Office:** Tableau, Power BI, Excel, PowerPoint, Word
-
-- **Where you work:** terminal, Jupyter Notebook, Google Colab, Quarto, Shiny, Streamlit, web pages
-
-- **AI assistants:** agent skill and MCP server, for Claude and ChatGPT
+- **Demos and documentation:** [maidr.ai](https://maidr.ai)
+- **Python:** [py.maidr.ai](https://py.maidr.ai) · **R:** [r.maidr.ai](https://r.maidr.ai)
+- **AI skill:** [xability/maidr-skill](https://github.com/xability/maidr-skill)
 
 ::: {.notes}
-So, does it work with the tool you use? Probably. Python and R you have seen. On the web there are adapters for nineteen JavaScript libraries, from D3 and Plotly to Google Charts. It reads embedded Tableau dashboards, Power BI visuals, and the charts in Excel, PowerPoint, and Word. It runs wherever you work: the terminal, Jupyter, Colab, Quarto, Shiny, Streamlit, or a plain web page. And for AI assistants there is the skill you just saw, plus an MCP server.
+12:45–13:30 | 45 seconds
 
-Together, the packages have been downloaded more than 119,000 times.
-:::
-
-# A Future We Build Together {.future-slide}
-
-::: {.notes}
-But look, this is about more than just a single tool. This is about a bigger vision. It's about a fundamental shift in how we think about our community and our work. It's about building a future that we can all be a part of.
-:::
-
----
-
-## Data Insight for All {.data-insight-slide}
-
-**Pick your way in:**
-
-```default
-# Python
-pip install -U maidr
-
-# R
-install.packages("maidr")
-
-# AI assistants
-npx skills add xability/maidr-skill
-```
-
-::: {.notes}
-Three ways in, three lines. Pick the one that matches how you work, and try it on a plot from your own research this week.
-:::
-
----
-
-## Learn More & Contribute
-
--   **Start here:** [maidr.ai](https://maidr.ai)
-
--   **Python:** [py.maidr.ai](https://py.maidr.ai)
-
--   **R:** [r.maidr.ai](https://r.maidr.ai)
-
--   **AI skill:** [github.com/xability/maidr-skill](https://github.com/xability/maidr-skill)
-
--   **Source Code:** [github.com/xability](https://github.com/xability)
-
-::: {.notes}
-If you want to play with live demos, read the documentation, or see more examples, start at maidr.ai. The entire project is open source on GitHub, of course, and we would absolutely love your feedback and contributions.
+Choose one entry point and try a chart from your own course or research. Start at maidr.ai for examples. For an AI assistant, follow the skill repository's current installation instructions rather than spending presentation time on setup screens.
 :::
 
 ---
@@ -933,42 +489,23 @@ If you want to play with live demos, read the documentation, or see more example
 :::
 :::
 
-
-
----
-
-## The Insights You Can't See (Yet)
-
-- We've been having a **monologue** with data 👁️
-
-- Time to start a **dialogue** 👁️👂🖐️💬
-
-- Your **hidden collaborators** are waiting
-
-- Don't lose the opportunity to innovate together
-
 ::: {.notes}
-So I'll leave you with this one final thought. I hope my presentation today has given you some new insights - and it has opened your eyes - and your ears, and maybe even your sense of touch - to new possibilities. Just like I've introduced new ways of seeing data to you today, I want you to think about this: We've been having a monologue with data for far too long, using just our eyes, just one sense.
+13:30–13:45 | 15 seconds
 
-It's time to start a dialogue. Your hidden collaborators are out there - brilliant people who experience data differently, who might hear patterns you can't see, who might feel trends you've never noticed.
-
-When you invite them into the conversation, when you make your data truly multimodal, you're not just being inclusive - you're opening doors to innovation you didn't even know existed.
-
-You see, this isn't just about helping "them." This is about what YOU are missing.  When we design for us, we all win—new perspectives breed new breakthroughs.
-
-Don't lose this opportunity. The future of data science isn't just making things accessible - it's recognizing that different ways of experiencing data lead to different insights. And those different insights? That's where innovation lives.
-
-Start today. Install maidr. Open your senses. Open your mind. Let's discover together what we've all been missing.
-
-Thank you.
+Thank the sponsors and contributors shown here. Do not read every name aloud; keep the full credits visible in the distributed deck.
 :::
 
 ---
 
-## Thank You! {.thank-you-slide}
+## Design for Us {.thank-you-slide}
 
-**JooYoung Seo**
+**One chart. Shared data. More ways to discover.**
 
-* Email: jseo1005@illinois.edu
-* Web: [maidr.ai](https://maidr.ai)
-* Twitter: [@seo_jooyoung](https://twitter.com/seo_jooyoung)
+JooYoung Seo · jseo1005@illinois.edu  
+[maidr.ai](https://maidr.ai)
+
+::: {.notes}
+13:45–15:00 | 75 seconds, including transition buffer
+
+The takeaway is not a separate chart for blind people. It is one chart that lets more people ask their own questions and contribute insights. Invite AccessComputing partners to try MAIDR with their students and send feedback. Thank the audience and hand back to the moderator. This closing slot includes up to one minute of buffer for switching tabs or entering charts earlier in the talk; if everything ran on time, finish early and begin questions.
+:::
