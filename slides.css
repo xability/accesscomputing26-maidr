@@ -1,3 +1,10 @@
+/* maidr.js draws its dialogs -- help, settings, chat -- into the slide, in
+   the chart, for a chart py-maidr writes into the page (1.27.0 and later,
+   xability/py-maidr#896). The rules below that style a slide's text leave
+   them out: they turned a dialog's text white, on its white paper. The
+   exclusion is in :where(), which adds nothing to a rule's specificity, so
+   the rules for one slide still win over these as they did. */
+
 /* ===========================================
    SPECIFIC SLIDE STYLING
    =========================================== */
@@ -498,6 +505,25 @@
   backdrop-filter: none !important;
 }
 
+/* FIXME: Remove once the deck is rendered with a maidr.js that has
+   xability/maidr#1439 (4.16.0, which the Python chart loads, does not). The
+   text maidr.js shows below a chart as the reader comes in, and changes at
+   every point they move to, otherwise widens the chart's box, which the
+   slide centres: the chart moved sideways, by up to 480px, and grew. */
+.maidr-inline [id^="react-container-"] {
+  contain: inline-size;
+}
+
+/* A chart's slide starts at its top, so that the text maidr.js shows below
+   the chart while the reader is in it takes its room below the chart, and
+   neither the chart nor the slide's title moves as the reader comes and
+   goes. A centred slide moved them up by half the text's height, and again
+   at each point whose text took another line. The chart is in the page
+   (.maidr-inline) or in the frame py-maidr builds (show_saved_chart). */
+.reveal .slides section:has(.maidr-inline, iframe[data-maidr-chart]) {
+  justify-content: flex-start !important;
+}
+
 /* "AI: Just Ask for a Plot" slide - a one-line prompt, so its box is one line
    tall rather than the 200px every code block is given further down */
 .reveal .slides section.prompt-slide pre {
@@ -569,9 +595,9 @@
 }
 
 /* Enhanced plot titles and captions */
-.cell-output-display h3,
-.cell-output-display h4,
-.cell-output-display p {
+.cell-output-display h3:where(:not(.MuiModal-root *)),
+.cell-output-display h4:where(:not(.MuiModal-root *)),
+.cell-output-display p:where(:not(.MuiModal-root *)) {
   color: #f8fafc !important;
   text-align: center !important;
   margin: 0.5rem 0 !important;
@@ -614,11 +640,11 @@
 }
 
 /* Center titles like line plots - use default styling */
-.reveal .slides section.box-plot-slide h2,
-.reveal .slides section.histogram-slide h2,
-.reveal .slides section.multipanel-slide h2,
-.reveal .slides section.performance-slide-1 h2,
-.reveal .slides section.performance-slide-2 h2 {
+.reveal .slides section.box-plot-slide h2:where(:not(.MuiModal-root *)),
+.reveal .slides section.histogram-slide h2:where(:not(.MuiModal-root *)),
+.reveal .slides section.multipanel-slide h2:where(:not(.MuiModal-root *)),
+.reveal .slides section.performance-slide-1 h2:where(:not(.MuiModal-root *)),
+.reveal .slides section.performance-slide-2 h2:where(:not(.MuiModal-root *)) {
   text-align: center !important;
   margin-bottom: 2rem !important;
 }
@@ -709,12 +735,12 @@ blockquote {
 /* section pre code - REMOVED TO AVOID CONFLICTS */
 
 /* Clean bullet points */
-section ul {
+section ul:where(:not(.MuiModal-root *)) {
   list-style: none !important;
   padding-left: 0 !important;
 }
 
-section li {
+section li:where(:not(.MuiModal-root *)) {
   padding: 0.6rem 0 !important;
   margin: 0.4rem 0 !important;
   font-size: 1.1rem !important;
@@ -774,14 +800,14 @@ pre {
 }
 
 /* Conversational slide text styling */
-section p {
+section p:where(:not(.MuiModal-root *)) {
   color: #e2e8f0 !important;
   font-size: 1.1rem !important;
   margin: 0.5rem 0 !important;
   padding: 0.5rem 0 !important;
 }
 
-section p strong {
+section p strong:where(:not(.MuiModal-root *)) {
   color: #1e3a8a !important;
   font-weight: 600 !important;
 }
@@ -879,12 +905,12 @@ html, body {
    =========================================== */
 
 /* Typography and Text Styling */
-.reveal .slides section h1,
-.reveal .slides section h2,
-.reveal .slides section h3,
-.reveal .slides section h4,
-.reveal .slides section h5,
-.reveal .slides section h6 {
+.reveal .slides section h1:where(:not(.MuiModal-root *)),
+.reveal .slides section h2:where(:not(.MuiModal-root *)),
+.reveal .slides section h3:where(:not(.MuiModal-root *)),
+.reveal .slides section h4:where(:not(.MuiModal-root *)),
+.reveal .slides section h5:where(:not(.MuiModal-root *)),
+.reveal .slides section h6:where(:not(.MuiModal-root *)) {
   color: var(--primary-white) !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
   font-weight: 700 !important;
@@ -893,23 +919,23 @@ html, body {
   line-height: 1.2 !important;
 }
 
-.reveal .slides section h1 {
+.reveal .slides section h1:where(:not(.MuiModal-root *)) {
   font-size: 3rem !important;
   color: var(--primary-white) !important;
 }
 
-.reveal .slides section h2 {
+.reveal .slides section h2:where(:not(.MuiModal-root *)) {
   font-size: 2.5rem !important;
   color: var(--primary-white) !important;
 }
 
-.reveal .slides section h3 {
+.reveal .slides section h3:where(:not(.MuiModal-root *)) {
   font-size: 2rem !important;
   color: var(--primary-white) !important;
 }
 
 /* Paragraph and Text Styling */
-.reveal .slides section p {
+.reveal .slides section p:where(:not(.MuiModal-root *)) {
   color: var(--text-light) !important;
   font-size: 1.3rem !important;
   line-height: 1.6 !important;
@@ -919,14 +945,14 @@ html, body {
 }
 
 /* List Styling */
-.reveal .slides section ul,
-.reveal .slides section ol {
+.reveal .slides section ul:where(:not(.MuiModal-root *)),
+.reveal .slides section ol:where(:not(.MuiModal-root *)) {
   text-align: left !important;
   margin: 1.5rem auto !important;
   max-width: 80% !important;
 }
 
-.reveal .slides section li {
+.reveal .slides section li:where(:not(.MuiModal-root *)) {
   color: var(--text-light) !important;
   font-size: 1.2rem !important;
   line-height: 1.5 !important;
@@ -935,13 +961,13 @@ html, body {
   padding: 0.5rem 0 !important;
 }
 
-.reveal .slides section ul li {
+.reveal .slides section ul li:where(:not(.MuiModal-root *)) {
   border-left: 3px solid #1e3a8a !important;
   padding-left: 1.5rem !important;
   margin: 0.5rem 0 !important;
 }
 
-.reveal .slides section ul li::marker {
+.reveal .slides section ul li:where(:not(.MuiModal-root *))::marker {
   display: none !important;
 }
 
@@ -994,13 +1020,13 @@ html, body {
    =========================================== */
 
 /* Strong/Bold Text */
-.reveal .slides section strong {
+.reveal .slides section strong:where(:not(.MuiModal-root *)) {
   color: var(--accent-mint) !important;
   font-weight: 700 !important;
 }
 
 /* Emphasis/Italic Text */
-.reveal .slides section em {
+.reveal .slides section em:where(:not(.MuiModal-root *)) {
   color: var(--text-muted) !important;
   font-style: italic !important;
 }
@@ -1032,7 +1058,7 @@ html, body {
 }
 
 /* Table Styling */
-.reveal .slides section table {
+.reveal .slides section table:where(:not(.MuiModal-root *)) {
   margin: 2rem auto !important;
   background: rgba(0, 0, 0, 0.6) !important;
   border-radius: 8px !important;
@@ -1040,14 +1066,14 @@ html, body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
-.reveal .slides section th {
+.reveal .slides section th:where(:not(.MuiModal-root *)) {
   background: var(--accent-teal) !important;
   color: var(--primary-white) !important;
   padding: 1rem !important;
   font-weight: 700 !important;
 }
 
-.reveal .slides section td {
+.reveal .slides section td:where(:not(.MuiModal-root *)) {
   color: var(--text-light) !important;
   padding: 0.8rem 1rem !important;
   border-bottom: 1px solid var(--border-color) !important;
